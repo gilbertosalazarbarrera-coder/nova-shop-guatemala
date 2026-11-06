@@ -1,0 +1,296 @@
+/**
+ * Catálogo de Productos - Shop Style E-Commerce (Guatemala)
+ * Precios expresados estrictamente en Quetzales (GTQ - Q)
+ * Cada producto cuenta con imágenes en alta resolución 1:1, especificaciones,
+ * marcas y calificaciones.
+ */
+
+const PRODUCTS_DATA = [
+  {
+    id: "prod-1",
+    name: "Audífonos Inalámbricos Studio Pro",
+    brand: "Aura Acoustics",
+    category: "audio",
+    categoryName: "Audio & Sonido",
+    price: 890.00,
+    originalPrice: 1150.00,
+    rating: 4.9,
+    reviewsCount: 342,
+    badge: "Más Vendido",
+    isNew: false,
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
+    description: "Cancelación activa de ruido híbrida de última generación, transductores de berilio de 40 mm y autonomía de hasta 40 horas continuas. Diseñados con almohadillas viscoelásticas ultra suaves para máxima comodidad.",
+    features: [
+      "Cancelación de Ruido Activa Adaptativa (ANC)",
+      "Hasta 40 horas de batería con carga rápida USB-C",
+      "Bluetooth 5.3 con códec LDAC de alta resolución",
+      "Micrófonos cuádruples con formación de haz para llamadas nítidas"
+    ],
+    colors: ["#111111", "#e2ded9", "#1e3a5f"],
+    stock: 18
+  },
+  {
+    id: "prod-2",
+    name: "Reloj Minimalist Chrono Titanio",
+    brand: "Krono Scandinavian",
+    category: "relojes",
+    categoryName: "Relojes & Lujo",
+    price: 1450.00,
+    originalPrice: 1850.00,
+    rating: 4.8,
+    reviewsCount: 189,
+    badge: "Exclusivo",
+    isNew: true,
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
+    description: "Caja ultraligera de titanio aeroespacial cepillado de 40 mm, cristal de zafiro irrayable y movimiento de cuarzo suizo de precisión milimétrica. Correa de cuero genuino intercambiable.",
+    features: [
+      "Cristal de zafiro resistente a rayaduras con tratamiento antirreflejo",
+      "Sumergible hasta 5 ATM (50 metros)",
+      "Caja en titanio de grado 5 de solo 38 gramos",
+      "Movimiento Suizo Ronda 5030.D de alta precisión"
+    ],
+    colors: ["#2d3134", "#d4af37", "#f3f4f6"],
+    stock: 9
+  },
+  {
+    id: "prod-3",
+    name: "Sneakers Urban Nomad V2",
+    brand: "Vanguard Studio",
+    category: "calzado",
+    categoryName: "Calzado Urbano",
+    price: 650.00,
+    originalPrice: 820.00,
+    rating: 4.7,
+    reviewsCount: 512,
+    badge: "20% OFF",
+    isNew: false,
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80",
+    description: "Zapatillas de alto rendimiento urbano con mediasuela de amortiguación responsiva por retorno de energía. Tejido exterior transpirable de punto elástico elaborado con fibras recicladas.",
+    features: [
+      "Mediasuela con infusión de nitrógeno para amortiguación reactiva",
+      "Empeine tejido PrimeKnit con ajuste tipo calcetín",
+      "Suela de caucho vulcanizado Continental de tracción multidireccional",
+      "Plantilla ergonómica antibacteriana Ortholite"
+    ],
+    colors: ["#c5221f", "#111111", "#4b5563"],
+    sizes: ["38", "39", "40", "41", "42", "43", "44"],
+    stock: 24
+  },
+  {
+    id: "prod-4",
+    name: "Cámara Mirrorless 4K Lumina Alpha",
+    brand: "Lumina Optics",
+    category: "tecnologia",
+    categoryName: "Tecnología",
+    price: 5890.00,
+    originalPrice: 6990.00,
+    rating: 4.95,
+    reviewsCount: 94,
+    badge: "Premium",
+    isNew: true,
+    image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80",
+    description: "Sensor CMOS de cuadro completo de 24.2 MP, grabación de video en 4K 60fps a 10 bits sin recorte, y estabilización óptica de imagen en el cuerpo de 5 ejes para creadores exigentes.",
+    features: [
+      "Sensor Full-Frame BSI de 24.2 megapíxeles",
+      "Enfoque automático híbrido con IA de seguimiento ocular",
+      "Visor OLED de 3.68 millones de puntos y pantalla abatible",
+      "Ranura dual para tarjetas SD UHS-II y cuerpo sellado"
+    ],
+    colors: ["#18181b", "#71717a"],
+    stock: 6
+  },
+  {
+    id: "prod-5",
+    name: "Teclado Mecánico Custom Horizon",
+    brand: "Keycraft Labs",
+    category: "tecnologia",
+    categoryName: "Tecnología & Setup",
+    price: 790.00,
+    originalPrice: 990.00,
+    rating: 4.9,
+    reviewsCount: 230,
+    badge: "Hot Deal",
+    isNew: false,
+    image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&auto=format&fit=crop&q=80",
+    description: "Diseño compacto al 75% con chasis de aluminio CNC anodizado, switches lubricados de fábrica Gateron Pro Yellow y conectividad trimodal (Bluetooth 5.1, 2.4GHz y USB-C).",
+    features: [
+      "Placa de montaje Gasket Mount para tacto suave y acústica profunda",
+      "Keycaps PBT sublimadas con perfil Cherry resistente al brillo",
+      "Hot-swap completo compatible con switches de 3 y 5 pines",
+      "Batería recargable de 4000mAh para meses de uso inalámbrico"
+    ],
+    colors: ["#374151", "#f9fafb", "#0284c7"],
+    stock: 14
+  },
+  {
+    id: "prod-6",
+    name: "Gafas de Sol Polarizadas Aviator Noir",
+    brand: "Optika Milan",
+    category: "accesorios",
+    categoryName: "Accesorios de Moda",
+    price: 490.00,
+    originalPrice: 620.00,
+    rating: 4.75,
+    reviewsCount: 167,
+    badge: "Tendencia",
+    isNew: false,
+    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80",
+    description: "Montura clásica aviador esculpida en acetato italiano pulido a mano. Cristales minerales con protección UV400 y polarizado de alta definición que neutraliza los reflejos solares.",
+    features: [
+      "Protección 100% contra rayos UVA y UVB (UV400 Categoría 3)",
+      "Bisagras de 5 dientes de acero inoxidable reforzado",
+      "Lentes con revestimiento hidrófobo y antiarañazos",
+      "Incluye estuche rígido en ecocuero y gamuza de microfibra"
+    ],
+    colors: ["#09090b", "#451a03", "#78350f"],
+    stock: 22
+  },
+  {
+    id: "prod-7",
+    name: "Mochila Urbana Impermeable Rolltop",
+    brand: "Nordic Carry",
+    category: "accesorios",
+    categoryName: "Bolsos & Mochilas",
+    price: 450.00,
+    originalPrice: 580.00,
+    rating: 4.85,
+    reviewsCount: 421,
+    badge: "Eco-Friendly",
+    isNew: true,
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80",
+    description: "Capacidad expandible de 18L a 25L fabricada en tejido Cordura repelente al agua. Compartimento acolchado independiente para laptop de hasta 16 pulgadas.",
+    features: [
+      "Material 100% resistente al agua con cremalleras termoselladas YKK",
+      "Bolsillo secreto en el panel trasero para documentos y objetos de valor",
+      "Cinturón de pecho magnético Fidlock de desacople rápido",
+      "Panel dorsal ergonómico transpirable con canal de flujo de aire"
+    ],
+    colors: ["#18181b", "#365314", "#334155"],
+    stock: 31
+  },
+  {
+    id: "prod-8",
+    name: "Lámpara Escultural Halo Touch",
+    brand: "Lumen Architecture",
+    category: "hogar",
+    categoryName: "Hogar & Decoración",
+    price: 590.00,
+    originalPrice: 750.00,
+    rating: 4.92,
+    reviewsCount: 115,
+    badge: "Diseño",
+    isNew: false,
+    image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&auto=format&fit=crop&q=80",
+    description: "Luminaria de escritorio minimalista con estructura de aluminio satinado y difusor perimetral de luz cálida (2700K - 4000K). Sensor táctil capacitivo de atenuación fluida sin parpadeos.",
+    features: [
+      "Regulación continua de intensidad (dimming) con toque táctil suave",
+      "Índice de reproducción cromática CRI > 95 para colores vivos",
+      "Base antideslizante con almohadilla de corcho ecológico",
+      "Consumo eficiente de solo 9W con vida útil de 50.000 horas"
+    ],
+    colors: ["#f3f4f6", "#1f2937", "#b45309"],
+    stock: 12
+  },
+  {
+    id: "prod-9",
+    name: "Altavoz Portátil Resonator Hi-Fi",
+    brand: "Aura Acoustics",
+    category: "audio",
+    categoryName: "Audio & Sonido",
+    price: 780.00,
+    originalPrice: 950.00,
+    rating: 4.88,
+    reviewsCount: 288,
+    badge: "Impermeable IP67",
+    isNew: true,
+    image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&auto=format&fit=crop&q=80",
+    description: "Sonido envolvente 360 grados con radiadores pasivos duales que entregan bajos profundos sin distorsión. Certificación IP67 a prueba de agua, arena y caídas accidentales.",
+    features: [
+      "Certificación sumergible IP67 (flota en el agua)",
+      "24 horas de reproducción con una sola carga",
+      "Modo Party-Cast para emparejar más de 100 altavoces simultáneamente",
+      "Diseño con rejilla de tejido balístico y asa de silicona resistente"
+    ],
+    colors: ["#18181b", "#0f766e", "#ea580c"],
+    stock: 19
+  },
+  {
+    id: "prod-10",
+    name: "Botella Térmica Hydro Minimalist 750ml",
+    brand: "Pure Nordic",
+    category: "hogar",
+    categoryName: "Hogar & Vida Activa",
+    price: 175.00,
+    originalPrice: 220.00,
+    rating: 4.8,
+    reviewsCount: 630,
+    badge: "Eco Top",
+    isNew: false,
+    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=80",
+    description: "Acero inoxidable de grado alimenticio 18/8 con aislamiento al vacío de doble pared TempShield. Mantiene las bebidas heladas por 24 horas o calientes durante 12 horas.",
+    features: [
+      "Libre de BPA, ftalatos y toxinas con revestimiento en polvo antideslizante",
+      "Tapón a prueba de fugas 100% hermético con asa ergonómica",
+      "Boca ancha compatible con cubos de hielo estándar",
+      "Apta para lavavajillas sin perder color ni adherencia"
+    ],
+    colors: ["#f1f5f9", "#0f172a", "#14b8a6", "#fb7185"],
+    stock: 45
+  },
+  {
+    id: "prod-11",
+    name: "Smartwatch Zenith Active OLED",
+    brand: "Krono Scandinavian",
+    category: "relojes",
+    categoryName: "Smartwatches",
+    price: 1190.00,
+    originalPrice: 1450.00,
+    rating: 4.87,
+    reviewsCount: 310,
+    badge: "GPS + ECG",
+    isNew: true,
+    image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80",
+    description: "Pantalla AMOLED siempre activa de 1.43 pulgadas con brillo pico de 1000 nits. Monitoreo cardíaco 24/7, sensor de saturación SpO2, GPS multibanda y más de 120 modos deportivos.",
+    features: [
+      "Pantalla Ultra AMOLED 466x466 píxeles con cristal templado 2.5D",
+      "Autonomía de 14 días en uso típico y recarga magnética veloz",
+      "Sensor biométrico de estrés y monitoreo del sueño",
+      "Compatible con iPhone y Android con notificaciones y control de música"
+    ],
+    colors: ["#0f172a", "#e2e8f0", "#15803d"],
+    stock: 15
+  },
+  {
+    id: "prod-12",
+    name: "Silla de Trabajo Ergonómica ErgoPulse",
+    brand: "Studio Ergonomics",
+    category: "hogar",
+    categoryName: "Hogar & Oficina",
+    price: 1850.00,
+    originalPrice: 2250.00,
+    rating: 4.93,
+    reviewsCount: 147,
+    badge: "Ergonómica",
+    isNew: false,
+    image: "https://images.unsplash.com/photo-1580481077195-c3f8ed458899?w=800&auto=format&fit=crop&q=80",
+    description: "Silla ergonómica de oficina con respaldo en malla transpirable, soporte lumbar autoadaptativo dinámico 3D, y reposabrazos ajustables en 4 dimensiones para prevenir fatiga.",
+    features: [
+      "Mecanismo sincrónico basculante con bloqueo en 4 posiciones",
+      "Pistón de gas Clase 4 certificado por BIFMA y base de aluminio pulido",
+      "Ruedas dobles de poliuretano silenciosas aptas para pisos delicados",
+      "Garantía estructural de 5 años respaldada en Guatemala"
+    ],
+    colors: ["#1e293b", "#94a3b8"],
+    stock: 8
+  }
+];
+
+const CATEGORIES_DATA = [
+  { id: "all", name: "Todos los Productos", icon: "grid" },
+  { id: "audio", name: "Audio & Sonido", icon: "headphones" },
+  { id: "relojes", name: "Relojes & Smart", icon: "watch" },
+  { id: "tecnologia", name: "Tecnología", icon: "laptop" },
+  { id: "calzado", name: "Calzado", icon: "footprints" },
+  { id: "accesorios", name: "Accesorios", icon: "sparkles" },
+  { id: "hogar", name: "Hogar & Setup", icon: "home" }
+];

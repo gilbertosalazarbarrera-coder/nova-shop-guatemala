@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Shop Guatemala — Tienda Oficial | Experiencia E-Commerce Shop Style</title>
+  <meta name="description" content="Descubre productos exclusivos con envío gratis y garantía certificada en Quetzales (Q) para toda Guatemala. Audífonos, tecnología, calzado, relojes y setup." />
+
+  <!-- Tipografía Inter Oficial con alta jerarquía visual -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Estilos del Sistema de Diseño Shop -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- ========================================================================
+         SIDEBAR NAV RAIL: Menú persistente izquierdo (~64px) sobre fondo blanco
+         ======================================================================== -->
+    <aside class="nav-rail" aria-label="Navegación principal">
+      <!-- Icono de Marca Superior -->
+      <a href="#inicio" class="nav-rail-brand" title="Nova Shop Guatemala">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="22" height="22">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+      </a>
+
+      <!-- Menú con iconos de 24px centrados y estado activo en fondo #f2f4f5 -->
+      <ul class="nav-rail-menu">
+        <li class="nav-rail-item">
+          <a href="#inicio" class="nav-rail-link active" data-tooltip="Inicio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </a>
+        </li>
+        <li class="nav-rail-item">
+          <a href="#catalogSection" class="nav-rail-link" data-tooltip="Catálogo en Quetzales">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </a>
+        </li>
+        <li class="nav-rail-item">
+          <a href="javascript:void(0)" class="nav-rail-link" onclick="openCartDrawer()" data-tooltip="Ver Carrito">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </a>
+        </li>
+        <li class="nav-rail-item">
+          <a href="javascript:void(0)" class="nav-rail-link" onclick="openLegalModal('terms')" data-tooltip="Marco Legal (Guatemala)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Footer Rail: Soporte Guatemala (+502 3257-8665) -->
+      <div class="nav-rail-footer">
+        <a href="https://wa.me/50232578665?text=Hola,%20estoy%20interesado%20en%20sus%20productos%20y%20quiero%20más%20información." target="_blank" rel="noopener noreferrer" class="nav-rail-link" data-tooltip="WhatsApp (+502 3257-8665)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         MAIN CANVAS WRAPPER: Fondo #f2f4f5 (Canvas Mist)
+         ======================================================================== -->
+    <main class="main-wrapper" id="inicio">
+      
+      <!-- HEADER & SEARCH HERO -->
+      <header class="top-header">
+        <div class="content-container">
+          <div class="top-header-inner">
+            
+            <!-- Logotipo & Título de Marca Guatemala -->
+            <div class="brand-text">
+              <span>Nova</span><span class="brand-accent">Shop</span>
+              <span style="font-size: 0.65rem; background: var(--canvas-mist); color: #374151; padding: 2px 8px; border-radius: var(--radius-pill); font-weight: 700; margin-left: 4px; border: 1px solid var(--faint-border);">GT</span>
+            </div>
+
+            <!-- BARRA DE BÚSQUEDA FLOTANTE ESTILO PILL (9999px) -->
+            <div class="search-hero-wrapper">
+              <form class="search-pill-form" id="searchPillForm" role="search">
+                <span class="search-icon-prefix">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </span>
+                
+                <input 
+                  type="text" 
+                  id="searchInput" 
+                  class="search-input" 
+                  placeholder="Buscar en Guatemala por audífonos, calzado, tecnología..." 
+                  autocomplete="off" 
+                  aria-label="Buscar en el catálogo"
+                />
+
+                <button type="button" id="searchClearBtn" class="search-clear-btn" title="Limpiar búsqueda">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="16" height="16">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+
+                <!-- Botón circular de envío a la derecha en violeta #5433eb con icono de flecha/lupa -->
+                <button type="submit" class="search-submit-btn" title="Ejecutar búsqueda">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- ACCIONES DEL HEADER: Carrito Pill con Totales en Quetzales -->
+            <div class="header-actions">
+              <button class="action-pill-btn" onclick="openCartDrawer()" aria-label="Abrir carrito de compras">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Carrito</span>
+                <span class="cart-counter-badge" id="cartCounterBadge" style="display: none;">0</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </header>
+
+      <!-- HERO BANNER SECTION (Guatemala) -->
+      <section class="hero-banner-section">
+        <div class="content-container">
+          <div class="hero-banner-card">
+            <div class="hero-content">
+              <div class="hero-badge-pill">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                Colección Guatemala 2026 • Precios en Quetzales (Q)
+              </div>
+              <h1 class="hero-title">Innovación, diseño y confianza en toda Guatemala.</h1>
+              <p class="hero-description">
+                Productos premium con despacho express a Ciudad de Guatemala y los 22 departamentos. Paga de forma segura mediante Transferencia o Depósito a nuestra cuenta oficial Banrural.
+              </p>
+              <div class="hero-cta-group">
+                <a href="#catalogSection" class="btn-primary-shop" style="width: auto; padding: 12px 28px;">
+                  Explorar en Quetzales
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <button class="action-pill-btn" onclick="openLegalModal('shipping')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                  </svg>
+                  Envío Gratis sobre Q500 en Guatemala
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BARRA DE CATEGORÍAS EN PILLS (Elevación suave 0px 2px 8px) -->
+      <section class="categories-bar-section">
+        <div class="content-container">
+          <div class="categories-bar-container" id="categoriesBar">
+            <!-- Renderizado dinámico desde app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- CATÁLOGO EN CUADRÍCULA FLOTANTE -->
+      <section class="content-container" id="catalogSection">
+        
+        <!-- Controles de Catálogo: Conteo y Ordenamiento -->
+        <div class="catalog-header-bar">
+          <div class="catalog-title-wrap">
+            <h2 class="heading-section">Catálogo Destacado</h2>
+            <span class="catalog-count-pill" id="catalogCount">Cargando...</span>
+          </div>
+
+          <div class="catalog-sort-select-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="7" y1="12" x2="17" y2="12"></line>
+              <line x1="10" y1="18" x2="14" y2="18"></line>
+            </svg>
+            <label for="catalogSortSelect" class="sr-only" style="position: absolute; width: 1px; height: 1px; overflow: hidden;">Ordenar por</label>
+            <select id="catalogSortSelect" class="catalog-sort-select">
+              <option value="featured">Relevancia / Destacados</option>
+              <option value="price-low">Precio: Menor a Mayor (Q)</option>
+              <option value="price-high">Precio: Mayor a Menor (Q)</option>
+              <option value="rating">Mejor Calificados</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Cuadrícula Flotante de Productos (Tarjetas con 28px de radio) -->
+        <div class="catalog-grid" id="productsGrid">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+
+      </section>
+
+      <!-- ========================================================================
+           PIE DE PÁGINA: MÓDULOS LEGALES E IDENTIFICACIÓN FISCAL EN GUATEMALA
+           ======================================================================== -->
+      <footer class="site-footer">
+        <div class="content-container">
+          <div class="footer-top-grid">
+            
+            <!-- Columna 1: Marca y Redes Sociales Minimalistas en Trazo Negro (#000000) -->
+            <div>
+              <div class="footer-brand-title">
+                Nova<span style="color: var(--shop-violet);">Shop</span> Guatemala
+              </div>
+              <p class="footer-brand-desc">
+                Comercio electrónico de alta fidelidad operando desde la Ciudad de Guatemala. Cumplimiento legal integral, facturación electrónica FEL y despacho garantizado a nivel nacional.
+              </p>
+              
+              <!-- Redes Sociales: Iconos minimalistas en trazo negro (#000000) -->
+              <div class="social-icons-row">
+                <!-- Instagram -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Síguenos en Instagram">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <!-- Facebook -->
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Síguenos en Facebook">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Síguenos en TikTok">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Columna 2: Navegación Rápida -->
+            <div>
+              <h4 class="footer-col-title">Explorar Catálogo</h4>
+              <ul class="footer-nav-list">
+                <li><a href="#catalogSection" class="footer-nav-link">Nuevos Ingresos</a></li>
+                <li><a href="#catalogSection" class="footer-nav-link">Más Populares en Guatemala</a></li>
+                <li><a href="#catalogSection" class="footer-nav-link">Audio y Acústica Pro</a></li>
+                <li><a href="#catalogSection" class="footer-nav-link">Relojes y Smartwatches</a></li>
+                <li><a href="#catalogSection" class="footer-nav-link">Calzado Urbano y Sneakers</a></li>
+              </ul>
+            </div>
+
+            <!-- Columna 3: Módulos Legales Obligatorios (Guatemala) -->
+            <div>
+              <h4 class="footer-col-title">Seguridad & Legal GT</h4>
+              <ul class="footer-nav-list">
+                <li>
+                  <a href="terminos.html" class="footer-nav-link" onclick="event.preventDefault(); openLegalModal('terms');">
+                    Términos y Condiciones (Guatemala)
+                  </a>
+                </li>
+                <li>
+                  <a href="privacidad.html" class="footer-nav-link" onclick="event.preventDefault(); openLegalModal('privacy');">
+                    Política de Privacidad y Datos
+                  </a>
+                </li>
+                <li>
+                  <a href="envios-garantias.html" class="footer-nav-link" onclick="event.preventDefault(); openLegalModal('shipping');">
+                    Envíos, Garantías y Devoluciones
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="footer-nav-link" onclick="acceptAllCookies()">
+                    Gestión de Cookies
+                  </a>
+                </li>
+                <li>
+                  <a href="https://wa.me/50232578665?text=Hola,%20estoy%20interesado%20en%20sus%20productos%20y%20quiero%20más%20información." target="_blank" rel="noopener noreferrer" class="footer-nav-link">
+                    Atención al Consumidor (WhatsApp +502 3257-8665)
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Columna 4: IDENTIFICACIÓN FISCAL Y CORPORATIVA EN GUATEMALA -->
+            <div>
+              <div class="fiscal-id-card">
+                <div class="fiscal-id-header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" style="color: var(--shop-violet);">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  <span>Sede y Domicilio Fiscal Oficial</span>
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">Razón Social:</span> Nova Commerce Solutions de Guatemala, S.A.
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">Nombre Comercial:</span> Nova Shop Guatemala
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">NIT SAT Guatemala:</span> 10482910-4
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">Registro Mercantil:</span> No. 129482, Folio 182, Libro 89
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">Sede Oficial:</span> Diagonal 6, 10-01 Zona 10, Centro Gerencial Las Margaritas, Torre II, Nivel 12, Ciudad de Guatemala, Guatemala
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">Soporte Corporativo:</span> soporte@tiendanovacomerce.com
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">WhatsApp Oficial:</span> +502 3257-8665
+                </div>
+                <div class="fiscal-item">
+                  <span class="fiscal-label">PBX Guatemala:</span> +502 2339-4820
+                </div>
+                <div class="fiscal-item" style="margin-top: 6px; font-size: 0.8rem; color: var(--muted-gray);">
+                  Horario de Atención: Lunes a Sábado: 8:00 AM - 7:00 PM (Hora de Guatemala)
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Barra Inferior de Copyright y Medios de Pago en Guatemala -->
+          <div class="footer-bottom-bar">
+            <div>
+              © 2026 Nova Commerce Solutions de Guatemala, S.A. Todos los derechos reservados. Ciudad de Guatemala.
+            </div>
+
+            <div class="payment-badges-row">
+              <span class="payment-badge-chip" style="background: #065f46; color: #ffffff; font-weight: 800;">BANRURAL</span>
+              <span class="payment-badge-chip">CUENTA DE AHORRO</span>
+              <span class="payment-badge-chip">TRANSFERENCIA BANCARIA</span>
+              <span class="payment-badge-chip">DEPÓSITO MONETARIO</span>
+              <span class="payment-badge-chip" style="background: #e0f2fe; color: #0369a1;">🔒 SSL 256-BIT</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       CARRITO SLIDE-OVER DRAWER (En Quetzales - Q)
+       ======================================================================== -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      
+      <div class="cart-drawer-header">
+        <h3 style="font-size: 1.25rem; font-weight: 700;">Tu Carrito de Compras</h3>
+        <button class="cart-close-btn" onclick="closeCartDrawer()" title="Cerrar carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Barra de progreso para Envío Gratis en Guatemala (Meta Q500) -->
+      <div class="shipping-progress-banner">
+        <div class="shipping-progress-text" id="shippingProgressText">
+          Calculando envío en Guatemala...
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="shippingProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Items en el carrito -->
+      <div class="cart-drawer-items" id="cartDrawerItems">
+        <!-- Renderizado dinámico -->
+      </div>
+
+      <!-- Footer del Carrito: Cupones y Totales en Quetzales -->
+      <div class="cart-drawer-footer">
+        
+        <!-- Cupón de descuento -->
+        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+          <input 
+            type="text" 
+            id="couponCodeInput" 
+            placeholder="Código de cupón (Ej: SHOP10 o GUATE20)" 
+            style="flex: 1; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.85rem;"
+          />
+          <button class="action-pill-btn" onclick="applyCouponCode()" style="padding: 10px 18px; font-size: 0.85rem;">
+            Aplicar
+          </button>
+        </div>
+
+        <div class="cart-subtotal-row">
+          <span class="text-muted">Subtotal:</span>
+          <span id="cartSubtotalAmount" style="font-weight: 600;">Q0.00</span>
+        </div>
+
+        <div class="cart-subtotal-row" id="cartDiscountRow" style="display: none; color: #16a34a;">
+          <span>Descuento aplicado:</span>
+          <span id="cartDiscountAmount" style="font-weight: 700;">-Q0.00</span>
+        </div>
+
+        <div class="cart-total-row">
+          <span>Total a Pagar:</span>
+          <span id="cartTotalAmount" style="color: var(--shop-violet);">Q0.00</span>
+        </div>
+
+        <button class="btn-primary-shop" style="font-size: 1rem; padding: 14px;" onclick="openCheckoutModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+            <line x1="1" y1="10" x2="23" y2="10"></line>
+          </svg>
+          Proceder al Checkout (Guatemala)
+        </button>
+
+        <p style="text-align: center; font-size: 0.75rem; color: var(--muted-gray); margin-top: 10px;">
+          Precios con IVA incluido • Factura electrónica FEL certificada SAT
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DE VISTA RÁPIDA (QUICK VIEW)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="quickViewModal" onclick="closeQuickView()">
+    <div class="modal-window" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 class="modal-header-title">Detalle del Producto</h3>
+        <button class="modal-close-btn" onclick="closeQuickView()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="quickViewContent">
+        <!-- Contenido dinámico -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DE DOCUMENTACIÓN LEGAL COMPLETA (Pestañas Interactivas)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="legalModal" onclick="closeLegalModal()">
+    <div class="modal-window modal-window-lg" onclick="event.stopPropagation()">
+      
+      <div class="modal-header">
+        <h3 class="modal-header-title" id="legalModalTitle">Marco Legal — Ciudad de Guatemala</h3>
+        <button class="modal-close-btn" onclick="closeLegalModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Barra de Pestañas Legales -->
+      <div class="legal-tabs-header">
+        <button class="legal-tab-btn active" data-tab="terms" onclick="switchLegalTab('terms')">
+          Términos y Condiciones
+        </button>
+        <button class="legal-tab-btn" data-tab="privacy" onclick="switchLegalTab('privacy')">
+          Privacidad y Datos Personales
+        </button>
+        <button class="legal-tab-btn" data-tab="shipping" onclick="switchLegalTab('shipping')">
+          Envíos, Garantías y Cobertura
+        </button>
+      </div>
+
+      <div class="modal-body" id="legalModalBody">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DE CHECKOUT GUATEMALA (3 Métodos de Pago Requeridos)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="checkoutModal" onclick="closeCheckoutModal()">
+    <div class="modal-window modal-window-lg" onclick="event.stopPropagation()">
+      
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20" style="color: var(--shop-violet);">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <h3 class="modal-header-title">Finalizar Pedido — Sede Guatemala</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closeCheckoutModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="checkoutForm" onsubmit="processCheckoutOrder(event)">
+          
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+            <span>1. Datos de Contacto y Entrega en Guatemala</span>
+          </h4>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+            <div>
+              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Nombre y Apellidos *</label>
+              <input type="text" required placeholder="Ej: Juan Pablo Morales" style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">NIT para Factura FEL (o C/F) *</label>
+              <input type="text" required placeholder="Ej: 5492810-3 o C/F" style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem;" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+            <div>
+              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Correo Electrónico *</label>
+              <input type="email" required placeholder="tucorreo@ejemplo.com" style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Teléfono Celular en Guatemala (+502) *</label>
+              <input type="tel" required placeholder="Ej: 5458-9201" style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem;" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px; margin-bottom: 20px;">
+            <div>
+              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Dirección Completa de Entrega (Avenida, Calle, Edificio/Casa) *</label>
+              <input type="text" required placeholder="Ej: 14 Calle 3-51 Zona 10, Apto 502" style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Municipio / Departamento *</label>
+              <select required style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem; font-weight: 500;">
+                <option value="Guatemala - Ciudad (Zonas 1-21)">Ciudad de Guatemala (Zonas 1 a 21)</option>
+                <option value="Mixco">Mixco (Guatemala)</option>
+                <option value="Villa Nueva">Villa Nueva (Guatemala)</option>
+                <option value="Santa Catarina Pinula">Santa Catarina Pinula (Carretera a El Salvador)</option>
+                <option value="Fraijanes">Fraijanes (Guatemala)</option>
+                <option value="San Miguel Petapa">San Miguel Petapa</option>
+                <option value="Sacatepéquez (Antigua Guatemala)">Sacatepéquez / Antigua Guatemala</option>
+                <option value="Quetzaltenango">Quetzaltenango (Xela)</option>
+                <option value="Escuintla">Escuintla</option>
+                <option value="Otro Departamento (Interior GT)">Otro Departamento (Envío Nacional)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- SECCIÓN 2: MÉTODO DE PAGO ÚNICO OFICIAL EN GUATEMALA -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin: 0;">2. Método de Pago Único Oficial</h4>
+            <span style="font-size: 0.74rem; background: #ecfdf5; color: #047857; padding: 4px 12px; border-radius: var(--radius-pill); font-weight: 700; border: 1px solid #a7f3d0;">
+              ✓ Pago Verificado en Quetzales
+            </span>
+          </div>
+
+          <!-- Indicador del Método Único Habilitado -->
+          <div style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 20px; background: #f0fdf4; border: 1.5px solid #86efac; margin-bottom: 16px;">
+            <div style="width: 36px; height: 36px; border-radius: var(--radius-pill); background: #16a34a; color: #ffffff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div style="font-weight: 800; font-size: 0.92rem; color: #14532d;">Transferencia Bancaria / Depósito Monetario</div>
+              <div style="font-size: 0.78rem; color: #166534;">Depósito en agencia Banrural o transferencia desde tu banca en línea</div>
+            </div>
+          </div>
+
+          <!-- PANEL CON DATOS DESTACADOS DE LA CUENTA BANRURAL -->
+          <div id="panelTransferPayment" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 22px; padding: 20px; margin-bottom: 20px;">
+            
+            <div style="font-size: 0.88rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+              <span>🏦 Cuenta Oficial de Depósito en Guatemala</span>
+            </div>
+            <p style="font-size: 0.82rem; color: #475569; margin-bottom: 16px; line-height: 1.5;">
+              Efectúa tu pago por el total exacto en Quetzales a la siguiente cuenta oficial:
+            </p>
+
+            <!-- Tarjeta Visual Destacada Banrural -->
+            <div style="background: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%); color: #ffffff; border-radius: 20px; padding: 20px 22px; margin-bottom: 18px; box-shadow: 0 8px 24px rgba(5, 150, 105, 0.28); position: relative; overflow: hidden;">
+              
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+                <div>
+                  <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; font-weight: 700;">Banco Oficial</div>
+                  <div style="font-size: 1.45rem; font-weight: 900; letter-spacing: -0.02em;">BANRURAL</div>
+                </div>
+                <span style="background: rgba(255, 255, 255, 0.22); backdrop-filter: blur(8px); padding: 5px 14px; border-radius: var(--radius-pill); font-size: 0.78rem; font-weight: 700;">
+                  Cuenta de Ahorro
+                </span>
+              </div>
+
+              <div style="margin-bottom: 14px;">
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; font-weight: 600; margin-bottom: 4px;">Número de Cuenta</div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span style="font-size: 1.65rem; font-weight: 900; letter-spacing: 0.08em; font-family: monospace;">4080161041</span>
+                  <button type="button" onclick="navigator.clipboard.writeText('4080161041'); showToast('¡Número de cuenta Banrural 4080161041 copiado!');" style="background: #ffffff; color: #065f46; border: none; padding: 6px 14px; border-radius: var(--radius-pill); font-size: 0.78rem; font-weight: 800; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: inline-flex; align-items: center; gap: 6px; transition: transform 0.15s ease;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    Copiar Cuenta
+                  </button>
+                </div>
+              </div>
+
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.25); padding-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+                <div>
+                  <div style="font-size: 0.68rem; text-transform: uppercase; opacity: 0.8; font-weight: 600;">Nombre del Titular</div>
+                  <div style="font-size: 1.05rem; font-weight: 800; letter-spacing: 0.02em;">IDALMA ODILI BARRERA</div>
+                </div>
+                <div style="font-size: 0.75rem; opacity: 0.9; font-weight: 600;">
+                  Moneda: Quetzales (GTQ)
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Campos de Validación del Comprobante -->
+            <div style="background: var(--pure-white); border-radius: 18px; padding: 18px; border: 1px solid #e2e8f0;">
+              
+              <div style="font-weight: 700; font-size: 0.86rem; color: #0f172a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" style="color: var(--shop-violet);">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <span>Reporte y Validación del Comprobante</span>
+              </div>
+
+              <div style="margin-bottom: 14px;">
+                <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #1e293b; margin-bottom: 4px;">
+                  Nombre de quien realiza el depósito / transferencia *
+                </label>
+                <input 
+                  type="text" 
+                  id="transferNombreDepositante" 
+                  required 
+                  placeholder="Ej: Carlos Mendoza o Idalma Barrera" 
+                  style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem; font-weight: 600;" 
+                />
+              </div>
+
+              <div style="margin-bottom: 14px;">
+                <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #1e293b; margin-bottom: 4px;">
+                  Número de Boleta o Transferencia Bancaria (Obligatorio) *
+                </label>
+                <input 
+                  type="text" 
+                  id="transferBoletaInput" 
+                  required 
+                  placeholder="Ej: Boleta Banrural 8492019 / Transf. 984021" 
+                  style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1.5px solid #059669; background: #f0fdf4; font-size: 0.9rem; font-weight: 700; color: #065f46;" 
+                />
+                <span style="font-size: 0.72rem; color: #64748b; margin-top: 4px; display: block;">
+                  Ingresa el número impreso en tu boleta física de Banrural o el número de transacción de tu banca en línea.
+                </span>
+              </div>
+
+              <div>
+                <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #1e293b; margin-bottom: 4px;">
+                  Foto o Captura del Comprobante de Pago:
+                </label>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <input 
+                    type="file" 
+                    id="transferComprobanteFile" 
+                    accept="image/*,.pdf" 
+                    style="font-size: 0.8rem; color: #475569; flex: 1;"
+                    onchange="if(this.files[0]) showToast('Comprobante adjuntado: ' + this.files[0].name);"
+                  />
+                  <a href="https://wa.me/50232578665?text=Hola,%20adjunto%20comprobante%20de%20depósito%20Banrural%20a%20nombre%20de%20IDALMA%20ODILI%20BARRERA%20para%20mi%20pedido%20en%20Nova%20Shop." target="_blank" rel="noopener noreferrer" class="action-pill-btn" style="padding: 8px 14px; font-size: 0.76rem; background: #25d366; color: #ffffff; box-shadow: 0 2px 8px rgba(37,211,102,0.3);">
+                    Enviar por WhatsApp (+502 3257-8665)
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- RESUMEN FINAL EN QUETZALES -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; font-size: 1.15rem; font-weight: 800; padding: 12px 0; border-top: 1px solid var(--faint-border); border-bottom: 1px solid var(--faint-border);">
+            <span>Total a Liquidar (Quetzales):</span>
+            <span id="checkoutSummaryTotal" style="color: var(--shop-violet); font-size: 1.45rem;">Q0.00</span>
+          </div>
+
+          <!-- VALIDACIÓN OBLIGATORIA DE TÉRMINOS Y CONDICIONES (GUATEMALA) -->
+          <div style="margin-bottom: 20px;">
+            <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.8rem; color: #374151; cursor: pointer;">
+              <input type="checkbox" id="acceptLegalTermsCheckbox" required style="margin-top: 3px; width: 16px; height: 16px; accent-color: var(--shop-violet);" />
+              <span>
+                <strong>Acepto expresamente:</strong> He leído, comprendido y acepto de forma obligatoria los 
+                <a href="terminos.html" onclick="event.preventDefault(); openLegalModal('terms');" style="color: var(--shop-violet); text-decoration: underline; font-weight: 700;">Términos y Condiciones de Uso</a> y la 
+                <a href="privacidad.html" onclick="event.preventDefault(); openLegalModal('privacy');" style="color: var(--shop-violet); text-decoration: underline; font-weight: 700;">Política de Tratamiento de Datos Personales</a> 
+                de Nova Commerce Solutions de Guatemala, S.A., con sede oficial en la Ciudad de Guatemala.
+              </span>
+            </label>
+          </div>
+
+          <!-- BOTÓN DE FINALIZAR PEDIDO -->
+          <button type="submit" id="checkoutSubmitBtn" class="btn-primary-shop" style="padding: 15px; font-size: 1rem;">
+            Confirmar y Finalizar Pedido en Quetzales
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DE CONFIRMACIÓN DE PEDIDO EXITOSO EN GUATEMALA
+       ======================================================================== -->
+  <div class="modal-backdrop" id="orderSuccessModal">
+    <div class="modal-window" style="max-width: 540px; text-align: center; padding: 36px 28px;">
+      
+      <div style="width: 72px; height: 72px; border-radius: var(--radius-pill); background: var(--badge-emerald-bg); color: #059669; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" width="36" height="36">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px;">¡Pedido Confirmado con Éxito en Guatemala!</h3>
+      
+      <p class="text-muted" style="margin-bottom: 16px; font-size: 0.95rem;">
+        Tu solicitud ha sido registrada en nuestro centro logístico en la Ciudad de Guatemala.
+      </p>
+
+      <div style="background: var(--canvas-mist); border-radius: 18px; padding: 14px; margin-bottom: 20px;">
+        <span style="font-size: 0.8rem; color: var(--muted-gray); display: block; margin-bottom: 4px;">Número Único de Pedido:</span>
+        <strong id="successOrderNumber" style="font-size: 1.35rem; letter-spacing: 0.05em; color: var(--shop-violet);">GT-000000</strong>
+      </div>
+
+      <div id="successPaymentNote" style="background: #f8fafc; border-radius: 16px; padding: 14px; font-size: 0.85rem; color: #334155; margin-bottom: 24px; text-align: left; line-height: 1.5; border: 1px solid var(--faint-border);">
+        <!-- Actualizado dinámicamente según el método de pago -->
+      </div>
+
+      <p style="font-size: 0.8rem; color: var(--muted-gray); margin-bottom: 24px; line-height: 1.5;">
+        Se ha enviado una copia de tu orden y el detalle de la factura electrónica FEL a tu correo electrónico.
+      </p>
+
+      <button class="btn-primary-shop" onclick="closeOrderSuccessModal()" style="padding: 12px 28px; width: auto; margin: 0 auto;">
+        Continuar Comprando
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       AVISO FLOTANTE DE COOKIES (Bottom Pill Banner)
+       ======================================================================== -->
+  <aside class="cookie-notice-banner" id="cookieNoticeBanner" aria-label="Aviso de privacidad y cookies">
+    <div class="cookie-content-text">
+      <strong>🍪 Privacidad y cookies en Guatemala:</strong> Utilizamos cookies propias y analíticas para optimizar tu experiencia en nuestra tienda en Quetzales conforme a nuestra 
+      <a href="privacidad.html" onclick="event.preventDefault(); openLegalModal('privacy');" style="color: var(--shop-violet); text-decoration: underline; font-weight: 600;">Política de Privacidad de Guatemala</a>.
+    </div>
+    <div class="cookie-actions-group">
+      <button class="btn-cookie-manage" onclick="acceptEssentialCookies()">
+        Solo necesarias
+      </button>
+      <button class="btn-cookie-accept" onclick="acceptAllCookies()">
+        Aceptar todas
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       BOTÓN FLOTANTE DE WHATSAPP GUATEMALA (+502 32578665)
+       ======================================================================== -->
+  <div class="whatsapp-float-container">
+    
+    <!-- Burbuja de Chat Interactiva -->
+    <div class="whatsapp-chat-bubble" id="whatsappChatBubble">
+      <div style="flex: 1;">
+        <div style="font-weight: 700; color: #166534; margin-bottom: 2px;">Soporte Nova Shop Guatemala</div>
+        <div>¿Tienes consultas sobre envíos a tu zona o municipios, pagos en Quetzales o transferencias? ¡Chatea con nosotros!</div>
+        <a href="https://wa.me/50232578665?text=Hola,%20estoy%20interesado%20en%20sus%20productos%20y%20quiero%20más%20información." target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 8px; font-size: 0.78rem; font-weight: 700; color: #15803d; text-decoration: underline;">
+          Chatear en WhatsApp (+502 3257-8665) &rarr;
+        </a>
+      </div>
+      <button class="bubble-close-btn" onclick="closeWhatsAppBubble(event)" title="Cerrar mensaje">
+        &times;
+      </button>
+    </div>
+
+    <!-- Botón Flotante con enlace directo oficial a WhatsApp API (+502 32578665) -->
+    <a href="https://wa.me/50232578665?text=Hola,%20estoy%20interesado%20en%20sus%20productos%20y%20quiero%20más%20información." target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn" aria-label="Atención al cliente vía WhatsApp Guatemala" title="Abrir chat en WhatsApp (+502 3257-8665)">
+      <span class="whatsapp-badge-status" title="En línea en Guatemala"></span>
+      <svg viewBox="0 0 24 24">
+        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zM12.05 20.21c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.44c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.12.17 1.77 2.7 4.28 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
