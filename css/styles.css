@@ -1402,12 +1402,17 @@ h1, h2, h3, h4, h5, h6 {
   gap: 20px;
   border: 1px solid rgba(255, 255, 255, 0.8);
   opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  visibility: hidden;
+  pointer-events: none; /* oculto = no captura toques */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 
 .cookie-notice-banner.show {
   transform: translateX(-50%) translateY(0);
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .cookie-content-text {
@@ -1464,7 +1469,8 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   bottom: 28px;
   right: 28px;
-  z-index: 900;
+  z-index: 960; /* por encima del banner de cookies (950), por debajo del carrito/modales (1000+) */
+  pointer-events: none; /* la caja vacía no bloquea; solo los hijos son interactivos */
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -1510,11 +1516,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .bubble-close-btn {
   color: var(--muted-gray);
-  padding: 2px;
+  min-width: 32px;
+  min-height: 32px;
+  margin: -6px -8px 0 0;
+  font-size: 1.4rem;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .whatsapp-float-btn {
+  pointer-events: auto;
   width: 58px;
   height: 58px;
   border-radius: var(--radius-pill);
@@ -1983,4 +1996,38 @@ h1, h2, h3, h4, h5, h6 {
   .product-title { font-size: 0.82rem; }
   .btn-primary-shop, .btn-secondary-shop { font-size: 0.74rem; padding: 9px 6px; }
   .action-pill-btn { padding: 9px 14px; }
+}
+
+/* ==========================================================================
+   INTERACTIVIDAD TÁCTIL Y ÁREAS SEGURAS (iOS/Android)
+   ========================================================================== */
+
+a, button, [role="button"], .nav-rail-link, .category-pill, .action-pill-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(84, 51, 235, 0.15);
+}
+
+@media (max-width: 768px) {
+  .nav-rail {
+    height: calc(64px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .main-wrapper { padding-bottom: calc(74px + env(safe-area-inset-bottom, 0px)); }
+
+  .cookie-notice-banner {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    gap: 12px;
+  }
+
+  .cookie-content-text { font-size: 0.8rem; }
+  .cookie-actions-group { width: 100%; }
+  .cookie-actions-group > button { flex: 1; }
+
+  .whatsapp-float-container { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+
+  /* Con el aviso de cookies visible, el botón de WhatsApp sube para no tapar sus botones */
+  body:has(.cookie-notice-banner.show) .whatsapp-float-container {
+    bottom: calc(76px + 190px + env(safe-area-inset-bottom, 0px));
+  }
 }
