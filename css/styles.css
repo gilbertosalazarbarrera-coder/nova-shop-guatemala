@@ -1,4 +1,3 @@
-/* Versión móvil actualizada */
 /* ==========================================================================
    SISTEMA DE DISEÑO Y TOKENS "SHOP STYLE REFERENCE"
    ========================================================================== */
@@ -79,6 +78,21 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* clip no crea contenedor de scroll (mantiene sticky) y evita el paneo lateral en iOS */
+@supports (overflow: clip) {
+  html, body { overflow-x: clip; }
+}
+
+video, iframe, canvas {
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(84, 51, 235, 0.18);
 }
 
 img {
@@ -121,6 +135,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: var(--tracking-tighter);
   font-weight: 700;
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .heading-display {
@@ -285,6 +300,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   width: calc(100% - var(--nav-rail-width));
+  min-width: 0;
 }
 
 .content-container {
@@ -368,6 +384,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .search-input {
   flex: 1;
+  min-width: 0;
+  width: 100%;
   border: none;
   background: transparent;
   font-size: 0.98rem;
@@ -505,6 +523,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-content {
   max-width: 580px;
+  min-width: 0;
   z-index: 2;
 }
 
@@ -612,6 +631,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .catalog-title-wrap {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: 12px;
 }
@@ -657,7 +677,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .catalog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
   gap: 28px;
   margin-bottom: 60px;
 }
@@ -673,6 +693,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
+  min-width: 0;
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .product-card:hover {
@@ -1541,7 +1563,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-top-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr);
   gap: 40px;
   margin-bottom: 48px;
 }
@@ -1645,6 +1667,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .fiscal-item {
   margin-bottom: 6px;
+  overflow-wrap: anywhere;
 }
 
 .fiscal-label {
@@ -1731,49 +1754,233 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   FORMULARIOS REUTILIZABLES (checkout y cupón)
+   ========================================================================== */
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.form-grid-2.form-grid-wide {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  margin-bottom: 20px;
+}
+
+.coupon-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.modal-body input,
+.modal-body select,
+.cart-drawer-footer input {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dispositivos táctiles: sin efectos hover "pegajosos" */
+@media (hover: none) {
+  .product-card:hover { transform: none; }
+  .product-card:hover .product-image { transform: none; }
+  .product-quickview-btn { display: none; }
+  .nav-rail-link[data-tooltip]::after { display: none; }
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN (Tablets & Mobile)
    ========================================================================== */
 
 @media (max-width: 1024px) {
   .footer-top-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 32px;
   }
 }
+
 @media (max-width: 768px) {
   :root {
     --nav-rail-width: 0px;
-  }
-
-  html, body {
-    overflow-x: hidden !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .app-layout, .main-content, header, footer {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    box-sizing: border-box !important;
+    --radius-card: 22px;
+    --radius-card-inner-img: 16px;
   }
 
   .nav-rail {
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 64px !important;
-    z-index: 1000 !important;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 12px;
+    border-right: none;
+    border-top: 1px solid var(--faint-border);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
   }
 
-  .products-grid, .catalog-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
+  .nav-rail-brand, .nav-rail-footer { display: none; }
+
+  .nav-rail-menu {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
   }
+
+  .nav-rail-link.active::before {
+    left: auto;
+    bottom: 0;
+    width: 24px;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .nav-rail-link[data-tooltip]::after { display: none; }
+
+  .main-wrapper {
+    margin-left: 0;
+    width: 100%;
+    padding-bottom: 74px; /* espacio para la barra inferior */
+  }
+
+  .content-container { padding: 0 14px; }
+
+  /* Header: marca + carrito arriba, buscador a ancho completo debajo */
+  .top-header { padding: 12px 0; }
+
+  .top-header-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .brand-text { order: 1; font-size: 1.2rem; }
+  .header-actions { order: 2; margin-left: auto; }
+
+  .search-hero-wrapper {
+    order: 3;
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .search-pill-form { padding: 4px 6px 4px 16px; }
+  .search-input { font-size: 0.92rem; }
+  .search-submit-btn { width: 40px; height: 40px; margin-left: 6px; }
+
+  /* Hero */
+  .hero-banner-section { padding: 16px 0 8px; }
+
+  .hero-banner-card {
+    padding: 26px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-content { width: 100%; }
+  .hero-badge-pill { max-width: 100%; font-size: 0.7rem; padding: 6px 12px; }
+  .hero-description { font-size: 0.95rem; margin-bottom: 18px; }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-cta-group > * {
+    width: 100% !important;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .categories-bar-section { padding: 8px 0 14px; }
+
+  /* Catálogo: cuadrícula limpia de 2 columnas */
+  .catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .catalog-header-bar { margin-bottom: 16px; }
+
+  .product-card { padding: 10px; }
+  .product-image-container { margin-bottom: 10px; }
+  .product-badge { top: 8px; left: 8px; padding: 4px 9px; font-size: 0.64rem; }
+  .product-wishlist-btn { top: 8px; right: 8px; width: 32px; height: 32px; }
+  .product-brand { font-size: 0.66rem; margin-bottom: 2px; }
+  .product-title { font-size: 0.88rem; margin-bottom: 6px; }
+  .product-rating-row { flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  .star-rating-stars svg { width: 12px; height: 12px; }
+  .rating-score { font-size: 0.74rem; }
+  .rating-count { font-size: 0.7rem; }
+  .product-pricing-row { flex-wrap: wrap; gap: 2px 8px; margin-bottom: 10px; }
+  .product-price-current { font-size: 1.05rem; }
+  .product-price-original { font-size: 0.76rem; }
+  .product-actions-group { gap: 6px; }
+  .btn-primary-shop, .btn-secondary-shop { padding: 10px 10px; font-size: 0.78rem; gap: 6px; }
+
+  /* Modales y carrito */
+  .modal-backdrop { padding: 12px; }
+  .modal-window { max-height: 92vh; }
+  .modal-header { padding: 16px 18px; }
+  .modal-header-title { font-size: 1.1rem; }
+  .modal-body { padding: 18px; }
+  .legal-tabs-header { padding: 0 18px 12px; }
+  .quickview-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+
+  .cart-drawer-header, .cart-drawer-footer, .shipping-progress-banner { padding-left: 18px; padding-right: 18px; }
+  .cart-drawer-items { padding: 16px 18px; }
+
+  .toast-container { top: 14px; right: 14px; left: 14px; align-items: flex-end; }
+  .toast-item { max-width: 100%; }
+
+  /* Footer */
+  .site-footer { padding: 40px 0 24px; }
+  .footer-top-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-bottom: 32px; }
+  .footer-bottom-bar { flex-direction: column; align-items: flex-start; }
+
+  .cookie-notice-banner {
+    flex-direction: column;
+    align-items: stretch;
+    bottom: 80px;
+    width: calc(100% - 24px);
+    border-radius: 20px;
+    padding: 16px 18px;
+  }
+
+  .cookie-actions-group { justify-content: flex-end; }
+
+  .whatsapp-float-container { bottom: 84px; right: 14px; }
+  .whatsapp-chat-bubble { max-width: min(260px, calc(100vw - 28px)); }
+}
+
+@media (max-width: 600px) {
+  .form-grid-2,
+  .form-grid-2.form-grid-wide {
+    grid-template-columns: minmax(0, 1fr);
+    margin-bottom: 14px;
+  }
+
+  .cookie-actions-group { flex-wrap: wrap; }
+}
+
+@media (max-width: 380px) {
+  .content-container { padding: 0 10px; }
+  .catalog-grid { gap: 8px; }
+  .product-card { padding: 8px; }
+  .product-title { font-size: 0.82rem; }
+  .btn-primary-shop, .btn-secondary-shop { font-size: 0.74rem; padding: 9px 6px; }
+  .action-pill-btn { padding: 9px 14px; }
 }
