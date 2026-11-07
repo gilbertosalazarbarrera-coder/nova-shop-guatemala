@@ -1718,22 +1718,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--muted-gray);
 }
 
-.payment-badges-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
 
-.payment-badge-chip {
-  padding: 4px 10px;
-  background: var(--canvas-mist);
-  border-radius: var(--radius-pill);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #4b5563;
-  letter-spacing: 0.02em;
-}
 
 /* ==========================================================================
    TOAST NOTIFICATIONS
@@ -2068,3 +2053,93 @@ a, button, [role="button"], .nav-rail-link, .category-pill, .action-pill-btn {
     max-width: 10ch;
   }
 }
+
+/* ==========================================================================
+   ENVÍOS: PAQUETERÍA Y RESUMEN DE CHECKOUT
+   ========================================================================== */
+
+.courier-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.courier-option {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.courier-option input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.courier-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: var(--canvas-mist);
+  border: 1.5px solid transparent;
+  transition: var(--transition-smooth);
+}
+
+.courier-option input:checked + .courier-card {
+  background: var(--pure-white);
+  border-color: var(--shop-violet);
+  box-shadow: 0 0 0 4px rgba(84, 51, 235, 0.12);
+}
+
+.courier-option input:focus-visible + .courier-card {
+  outline: 2px solid var(--shop-violet);
+  outline-offset: 2px;
+}
+
+.courier-name { font-weight: 700; font-size: 0.92rem; }
+.courier-fee { font-size: 0.82rem; font-weight: 600; color: var(--muted-gray); }
+.courier-fee.is-free { color: #047857; }
+.courier-note { font-size: 0.78rem; color: var(--muted-gray); margin-bottom: 22px; }
+
+.checkout-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 12px 0;
+  border-top: 1px solid var(--faint-border);
+  border-bottom: 1px solid var(--faint-border);
+}
+
+.checkout-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.92rem;
+}
+
+.checkout-summary-row[hidden] { display: none; }
+.checkout-summary-row > span:last-child { font-weight: 700; white-space: nowrap; }
+
+.checkout-summary-total {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--faint-border);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.checkout-summary-total #checkoutSummaryTotal {
+  color: var(--shop-violet);
+  font-size: 1.4rem;
+}
+
+.order-shipping-note { margin-top: 8px; font-weight: 500; }
