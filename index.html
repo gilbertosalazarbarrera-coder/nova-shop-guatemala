@@ -444,7 +444,7 @@
             <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
             <line x1="1" y1="10" x2="23" y2="10"></line>
           </svg>
-          Proceder al Checkout (Guatemala)
+          Proceder al Pago
         </button>
 
         <p style="text-align: center; font-size: 0.75rem; color: var(--muted-gray); margin-top: 10px;">
@@ -562,27 +562,48 @@
             </div>
           </div>
 
-          <div class="form-grid-2 form-grid-wide">
+          <div style="margin-bottom: 14px;">
+            <label for="checkoutDireccion" class="field-label">Dirección Completa de Entrega (Avenida, Calle, Edificio/Casa) *</label>
+            <input id="checkoutDireccion" name="direccion" type="text" required autocomplete="street-address" placeholder="Ej: 14 Calle 3-51 Zona 10, Apto 502" class="field-input" />
+          </div>
+
+          <div class="form-grid-2" style="margin-bottom: 20px;">
             <div>
-              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Dirección Completa de Entrega (Avenida, Calle, Edificio/Casa) *</label>
-              <input type="text" required placeholder="Ej: 14 Calle 3-51 Zona 10, Apto 502" style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem;" />
+              <label for="checkoutDepartamento" class="field-label">Departamento *</label>
+              <select id="checkoutDepartamento" name="departamento" required autocomplete="address-level1" class="field-input">
+                <option value="" selected disabled>Selecciona un departamento</option>
+              <option value="Alta Verapaz">Alta Verapaz</option>
+              <option value="Baja Verapaz">Baja Verapaz</option>
+              <option value="Chimaltenango">Chimaltenango</option>
+              <option value="Chiquimula">Chiquimula</option>
+              <option value="El Progreso">El Progreso</option>
+              <option value="Escuintla">Escuintla</option>
+              <option value="Guatemala">Guatemala</option>
+              <option value="Huehuetenango">Huehuetenango</option>
+              <option value="Izabal">Izabal</option>
+              <option value="Jalapa">Jalapa</option>
+              <option value="Jutiapa">Jutiapa</option>
+              <option value="Petén">Petén</option>
+              <option value="Quetzaltenango">Quetzaltenango</option>
+              <option value="Quiché">Quiché</option>
+              <option value="Retalhuleu">Retalhuleu</option>
+              <option value="Sacatepéquez">Sacatepéquez</option>
+              <option value="San Marcos">San Marcos</option>
+              <option value="Santa Rosa">Santa Rosa</option>
+              <option value="Sololá">Sololá</option>
+              <option value="Suchitepéquez">Suchitepéquez</option>
+              <option value="Totonicapán">Totonicapán</option>
+              <option value="Zacapa">Zacapa</option>
+              </select>
             </div>
             <div>
-              <label style="display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 4px;">Municipio / Departamento *</label>
-              <select required style="width: 100%; padding: 10px 16px; border-radius: var(--radius-pill); border: 1px solid var(--faint-border); background: var(--canvas-mist); font-size: 0.88rem; font-weight: 500;">
-                <option value="Guatemala - Ciudad (Zonas 1-21)">Ciudad de Guatemala (Zonas 1 a 21)</option>
-                <option value="Mixco">Mixco (Guatemala)</option>
-                <option value="Villa Nueva">Villa Nueva (Guatemala)</option>
-                <option value="Santa Catarina Pinula">Santa Catarina Pinula (Carretera a El Salvador)</option>
-                <option value="Fraijanes">Fraijanes (Guatemala)</option>
-                <option value="San Miguel Petapa">San Miguel Petapa</option>
-                <option value="Sacatepéquez (Antigua Guatemala)">Sacatepéquez / Antigua Guatemala</option>
-                <option value="Quetzaltenango">Quetzaltenango (Xela)</option>
-                <option value="Escuintla">Escuintla</option>
-                <option value="Otro Departamento (Interior GT)">Otro Departamento (Envío Nacional)</option>
+              <label for="checkoutMunicipio" class="field-label">Municipio *</label>
+              <select id="checkoutMunicipio" name="municipio" required disabled autocomplete="address-level2" class="field-input">
+                <option value="" selected disabled>Primero elige un departamento</option>
               </select>
             </div>
           </div>
+
 
           <!-- SECCIÓN 2: EMPRESA DE MENSAJERÍA -->
           <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">2. Empresa de Mensajería</h4>
@@ -855,10 +876,12 @@
 
   <!-- Scripts -->
   <script src="js/products.js"></script>
+  <script src="js/guatemala-geo.js"></script>
   <script src="js/app.js"></script>
   <!-- CMS Loader: lee data/products/*.md generados por Decap CMS (si hay servidor HTTP) -->
   <script src="js/cms-loader.js"></script>
   <!-- Envíos: umbral de envío gratis y paquetería (cargar después de app.js) -->
+  <script src="js/location.js"></script>
   <script src="js/shipping.js"></script>
 </body>
 </html>
