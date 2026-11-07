@@ -76,6 +76,23 @@
     if (fill && fill.style.width !== w) fill.style.width = w;
   }
 
+  // Datos de la orden (ubicación + paquetería + montos). Disponible también como NovaShipping.getOrderData()
+  function getOrderData() {
+    const val = (id) => ($(id) && $(id).value) || '';
+    const subtotal = round2(parseMoney($('cartSubtotalAmount') && $('cartSubtotalAmount').textContent));
+    const s = calcShipping(subtotal, selectedCarrierKey());
+    return {
+      departamento: val('checkoutDepartamento'),
+      municipio: val('checkoutMunicipio'),
+      direccion: val('checkoutDireccion'),
+      carrier: s.carrier.name,
+      subtotal: subtotal,
+      shipping: s.cost,
+      freeShipping: s.free,
+      total: parseMoney($('checkoutSummaryTotal') && $('checkoutSummaryTotal').textContent)
+    };
+  }
+
   // Corrige el umbral antiguo (Q500) que app.js escribe en los textos legales
   function fixLegalText() {
     const body = $('legalModalBody');
@@ -94,9 +111,12 @@
     const note = $('successPaymentNote');
     if (!note || !lastOrder || note.querySelector('.order-shipping-note')) return;
     const o = lastOrder;
+    const esc = (t) => String(t).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
     note.insertAdjacentHTML('beforeend',
-      '<div class="order-shipping-note"><strong>Envío:</strong> ' + o.carrier + ' — ' +
-      (o.free ? 'Gratis' : money(o.cost)) + ' · <strong>Total con envío:</strong> ' + money(o.total) + '</div>');
+      '<div class="order-shipping-note">' +
+      (o.municipio ? '<strong>Entrega en:</strong> ' + esc(o.municipio) + ', ' + esc(o.departamento) + '<br>' : '') +
+      '<strong>Envío:</strong> ' + esc(o.carrier) + ' — ' + (o.freeShipping ? 'Gratis' : money(o.shipping)) +
+      ' · <strong>Total con envío:</strong> ' + money(o.total) + '</div>');
   }
 
   function init() {
@@ -107,9 +127,7 @@
     if (form) form.addEventListener('submit', () => {
       if (!form.checkValidity()) return;
       refresh();
-      const sub = parseMoney($('cartSubtotalAmount').textContent);
-      const s = calcShipping(sub, selectedCarrierKey());
-      lastOrder = { carrier: s.carrier.name, cost: s.cost, free: s.free, total: parseMoney($('checkoutSummaryTotal').textContent) };
+      lastOrder = getOrderData();
     }, true);
 
     // IMPORTANTE: update() escribe en elementos que este mismo observador vigila. Para evitar un
@@ -139,6 +157,6 @@
     if ($('successPaymentNote')) new MutationObserver(addOrderNote).observe($('successPaymentNote'), { childList: true, characterData: true, subtree: true });
   }
 
-  window.NovaShipping = { CONFIG, calcShipping };
+  window.NovaShipping = { CONFIG, calcShipping, getOrderData };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
