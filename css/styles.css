@@ -338,31 +338,35 @@ h1, h2, h3, h4, h5, h6 {
   gap: 12px;
 }
 
-.brand-text {
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: var(--tracking-display);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
 
 .brand-accent {
   color: var(--shop-violet);
 }
 
-/* Logotipo de marca */
+/* Marca: isotipo "N" + nombre (Flexbox) */
 .brand-logo-link {
   display: inline-flex;
   align-items: center;
+  gap: 10px;
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .site-logo {
-  max-height: 45px;
+  height: 40px;
   width: auto;
   object-fit: contain;
-  border-radius: 10px; /* el logo tiene fondo oscuro: se ve como ficha redondeada */
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #17142b;
+  white-space: nowrap;
 }
 
 /* Search Hero Bar (Floating Pill Shape 9999px) */
@@ -1891,7 +1895,6 @@ h1, h2, h3, h4, h5, h6 {
     gap: 12px;
   }
 
-  .brand-text { order: 1; font-size: 1.2rem; }
   .header-actions { order: 2; margin-left: auto; }
 
   .search-hero-wrapper {
@@ -2048,7 +2051,20 @@ a, button, [role="button"], .nav-rail-link, .category-pill, .action-pill-btn {
 
 /* Logotipo en móvil */
 @media (max-width: 768px) {
-  .brand-logo-link { order: 1; }
+  .brand-logo-link { order: 1; gap: 8px; }
 
-  .site-logo { max-height: 35px; }
+  .site-logo { height: 36px; border-radius: 9px; }
+
+  .brand-text { font-size: 1.02rem; }
+}
+
+@media (max-width: 420px) {
+  .site-logo { height: 34px; }
+
+  /* En pantallas angostas el nombre pasa a dos líneas: "Nova Shop / Guatemala" */
+  .brand-text {
+    font-size: 0.9rem;
+    white-space: normal;
+    max-width: 10ch;
+  }
 }
