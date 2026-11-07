@@ -163,15 +163,15 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13">
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                 </svg>
-                Colección Guatemala 2026 • Precios en Quetzales (Q)
+                Tienda oficial • Nuevos ingresos
               </div>
-              <h1 class="hero-title">Innovación, diseño y confianza en toda Guatemala.</h1>
+              <h1 class="hero-title">Lo último en tendencia, directo a tu puerta.</h1>
               <p class="hero-description">
-                Productos premium con despacho express a Ciudad de Guatemala y los 22 departamentos. Paga de forma segura mediante Transferencia o Depósito a nuestra cuenta oficial Banrural.
+                Descubre lo mejor en tendencia con envíos rápidos a todo el país. ¡Haz tu primer pedido hoy!
               </p>
               <div class="hero-cta-group">
                 <a href="#catalogSection" class="btn-primary-shop" style="width: auto; padding: 12px 28px;">
-                  Explorar en Quetzales
+                  Explorar
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -184,7 +184,7 @@
                     <circle cx="5.5" cy="18.5" r="2.5"></circle>
                     <circle cx="18.5" cy="18.5" r="2.5"></circle>
                   </svg>
-                  Envío Gratis sobre Q500 en Guatemala
+                  Envío Gratis desde Q300 en adelante
                 </button>
               </div>
             </div>
@@ -365,14 +365,6 @@
             <div>
               © 2026 Nova Commerce Solutions de Guatemala, S.A. Todos los derechos reservados. Ciudad de Guatemala.
             </div>
-
-            <div class="payment-badges-row">
-              <span class="payment-badge-chip" style="background: #065f46; color: #ffffff; font-weight: 800;">BANRURAL</span>
-              <span class="payment-badge-chip">CUENTA DE AHORRO</span>
-              <span class="payment-badge-chip">TRANSFERENCIA BANCARIA</span>
-              <span class="payment-badge-chip">DEPÓSITO MONETARIO</span>
-              <span class="payment-badge-chip" style="background: #e0f2fe; color: #0369a1;">🔒 SSL 256-BIT</span>
-            </div>
           </div>
         </div>
       </footer>
@@ -396,7 +388,7 @@
         </button>
       </div>
 
-      <!-- Barra de progreso para Envío Gratis en Guatemala (Meta Q500) -->
+      <!-- Barra de progreso para Envío Gratis en Guatemala (Meta Q300) -->
       <div class="shipping-progress-banner">
         <div class="shipping-progress-text" id="shippingProgressText">
           Calculando envío en Guatemala...
@@ -437,8 +429,13 @@
           <span id="cartDiscountAmount" style="font-weight: 700;">-Q0.00</span>
         </div>
 
+        <div class="cart-subtotal-row" id="cartShippingRow">
+          <span class="text-muted">Envío:</span>
+          <span id="cartShippingAmount" style="font-weight: 600;">Se calcula en el checkout</span>
+        </div>
+
         <div class="cart-total-row">
-          <span>Total a Pagar:</span>
+          <span id="cartTotalLabel">Total a Pagar:</span>
           <span id="cartTotalAmount" style="color: var(--shop-violet);">Q0.00</span>
         </div>
 
@@ -587,9 +584,29 @@
             </div>
           </div>
 
-          <!-- SECCIÓN 2: MÉTODO DE PAGO ÚNICO OFICIAL EN GUATEMALA -->
+          <!-- SECCIÓN 2: EMPRESA DE MENSAJERÍA -->
+          <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px;">2. Empresa de Mensajería</h4>
+          <div class="courier-options" role="radiogroup" aria-label="Empresa de mensajería">
+            <label class="courier-option">
+              <input type="radio" name="courier" value="cargo-expreso" checked />
+              <span class="courier-card">
+                <span class="courier-name">Cargo Expreso</span>
+                <span class="courier-fee" data-courier-fee="cargo-expreso">Q35.00</span>
+              </span>
+            </label>
+            <label class="courier-option">
+              <input type="radio" name="courier" value="guatex" />
+              <span class="courier-card">
+                <span class="courier-name">Guatex</span>
+                <span class="courier-fee" data-courier-fee="guatex">Q30.00</span>
+              </span>
+            </label>
+          </div>
+          <p class="courier-note" id="courierFreeNote">Envío gratis desde Q300.00 en adelante, sin importar la paquetería.</p>
+
+          <!-- SECCIÓN 3: MÉTODO DE PAGO ÚNICO OFICIAL EN GUATEMALA -->
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-            <h4 style="font-size: 0.95rem; font-weight: 700; margin: 0;">2. Método de Pago Único Oficial</h4>
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin: 0;">3. Método de Pago Único Oficial</h4>
             <span style="font-size: 0.74rem; background: #ecfdf5; color: #047857; padding: 4px 12px; border-radius: var(--radius-pill); font-weight: 700; border: 1px solid #a7f3d0;">
               ✓ Pago Verificado en Quetzales
             </span>
@@ -722,9 +739,11 @@
           </div>
 
           <!-- RESUMEN FINAL EN QUETZALES -->
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; font-size: 1.15rem; font-weight: 800; padding: 12px 0; border-top: 1px solid var(--faint-border); border-bottom: 1px solid var(--faint-border);">
-            <span>Total a Liquidar (Quetzales):</span>
-            <span id="checkoutSummaryTotal" style="color: var(--shop-violet); font-size: 1.45rem;">Q0.00</span>
+          <div class="checkout-summary">
+            <div class="checkout-summary-row"><span class="text-muted">Subtotal</span><span id="checkoutSubtotal">Q0.00</span></div>
+            <div class="checkout-summary-row" id="checkoutDiscountRow" hidden><span class="text-muted">Descuento</span><span id="checkoutDiscount" style="color: #16a34a;">-Q0.00</span></div>
+            <div class="checkout-summary-row"><span class="text-muted">Costo de envío (<span id="checkoutCourierName">Cargo Expreso</span>)</span><span id="checkoutShipping">Q35.00</span></div>
+            <div class="checkout-summary-row checkout-summary-total"><span>Total a Liquidar (Quetzales):</span><span id="checkoutSummaryTotal">Q0.00</span></div>
           </div>
 
           <!-- VALIDACIÓN OBLIGATORIA DE TÉRMINOS Y CONDICIONES (GUATEMALA) -->
@@ -839,5 +858,7 @@
   <script src="js/app.js"></script>
   <!-- CMS Loader: lee data/products/*.md generados por Decap CMS (si hay servidor HTTP) -->
   <script src="js/cms-loader.js"></script>
+  <!-- Envíos: umbral de envío gratis y paquetería (cargar después de app.js) -->
+  <script src="js/shipping.js"></script>
 </body>
 </html>
