@@ -57,7 +57,7 @@
     // Resumen del checkout
     setText($('checkoutSubtotal'), money(subtotal));
     const dRow = $('checkoutDiscountRow');
-    if (dRow) { dRow.hidden = !(discount > 0); setText($('checkoutDiscount'), '-' + money(discount)); }
+    if (dRow) { const hide = !(discount > 0); if (dRow.hidden !== hide) dRow.hidden = hide; setText($('checkoutDiscount'), '-' + money(discount)); }
     setText($('checkoutCourierName'), s.carrier.name);
     setText($('checkoutShipping'), s.free ? 'Gratis (Q0.00)' : money(s.cost));
     setText($('checkoutSummaryTotal'), money(total));
@@ -72,7 +72,7 @@
       : 'Te faltan ' + money(round2(T - subtotal)) + ' para tener envío gratis';
     setText($('shippingProgressText'), txt);
     const fill = $('shippingProgressFill');
-    const w = Math.min(100, (subtotal / T) * 100).toFixed(1) + '%';
+    const w = (Math.round(Math.min(100, (subtotal / T) * 100) * 10) / 10) + '%'; // mismo formato que serializa el navegador
     if (fill && fill.style.width !== w) fill.style.width = w;
   }
 
@@ -103,24 +103,38 @@
     update();
     fixLegalText();
 
-    document.addEventListener('change', (e) => { if (e.target && e.target.name === 'courier') update(); });
-
     const form = $('checkoutForm');
     if (form) form.addEventListener('submit', () => {
       if (!form.checkValidity()) return;
-      update();
+      refresh();
       const sub = parseMoney($('cartSubtotalAmount').textContent);
       const s = calcShipping(sub, selectedCarrierKey());
       lastOrder = { carrier: s.carrier.name, cost: s.cost, free: s.free, total: parseMoney($('checkoutSummaryTotal').textContent) };
     }, true);
 
+    // IMPORTANTE: update() escribe en elementos que este mismo observador vigila. Para evitar un
+    // bucle infinito (congelaba la pestaña), se desconecta durante update() y se difiere con setTimeout.
+    const targets = ['cartSubtotalAmount', 'cartDiscountAmount', 'cartDiscountRow', 'checkoutSummaryTotal',
+      'shippingProgressText', 'shippingProgressFill', 'checkoutModal'].map($).filter(Boolean);
     const opts = { childList: true, characterData: true, subtree: true, attributes: true };
-    let queued = false;
-    const schedule = () => { if (queued) return; queued = true; Promise.resolve().then(() => { queued = false; update(); }); };
-    ['cartSubtotalAmount', 'cartDiscountAmount', 'cartDiscountRow', 'checkoutSummaryTotal',
-     'shippingProgressText', 'shippingProgressFill', 'checkoutModal'].forEach((id) => {
-      const el = $(id); if (el) new MutationObserver(schedule).observe(el, opts);
+    const watch = () => targets.forEach((el) => updObs.observe(el, opts));
+    let timer = null, burst = 0, burstStart = 0;
+    const refresh = () => {
+      updObs.disconnect();
+      try { update(); } finally { watch(); }
+    };
+    const updObs = new MutationObserver(() => {
+      if (timer) return;
+      timer = setTimeout(() => {
+        timer = null;
+        const now = Date.now();
+        if (now - burstStart > 1000) { burstStart = now; burst = 0; }
+        if (++burst > 100) { updObs.disconnect(); console.warn('[shipping] demasiadas actualizaciones; observador detenido'); return; }
+        refresh();
+      }, 0);
     });
+    document.addEventListener('change', (e) => { if (e.target && e.target.name === 'courier') refresh(); });
+    watch();
     if ($('legalModalBody')) new MutationObserver(fixLegalText).observe($('legalModalBody'), { childList: true, characterData: true, subtree: true });
     if ($('successPaymentNote')) new MutationObserver(addOrderNote).observe($('successPaymentNote'), { childList: true, characterData: true, subtree: true });
   }
