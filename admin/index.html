@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración — Nova Shop Guatemala</title>
+  <title>Panel de Administración – Nova Shop Guatemala</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
-    /* Splash mínimo mientras carga el CMS */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, sans-serif;
@@ -14,7 +14,17 @@
   </style>
 </head>
 <body>
-  <!-- Decap CMS (antes Netlify CMS) — versión 3.x -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/nova-shop-guatemala/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
