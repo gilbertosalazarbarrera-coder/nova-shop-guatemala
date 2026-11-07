@@ -7,9 +7,9 @@
   const CONFIG = {
     freeShippingThreshold: 300,           // Q300.00 o más => envío gratis
     defaultCarrier: 'cargo-expreso',
-    carriers: {
-      'cargo-expreso': { name: 'Cargo Expreso', fee: 35 },   // TARIFA DE EJEMPLO
-      'guatex':        { name: 'Guatex',        fee: 30 }    // TARIFA DE EJEMPLO
+  carriers: {
+      'cargo-expreso': { name: 'Cargo Expreso', fee: 35 },
+      'forza':         { name: 'Forza Delivery Express', fee: 35 }
     }
   };
 
