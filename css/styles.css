@@ -351,6 +351,20 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--shop-violet);
 }
 
+/* Logotipo de marca */
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.site-logo {
+  max-height: 45px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 10px; /* el logo tiene fondo oscuro: se ve como ficha redondeada */
+}
+
 /* Search Hero Bar (Floating Pill Shape 9999px) */
 .search-hero-wrapper {
   flex: 1;
@@ -2030,4 +2044,11 @@ a, button, [role="button"], .nav-rail-link, .category-pill, .action-pill-btn {
   body:has(.cookie-notice-banner.show) .whatsapp-float-container {
     bottom: calc(76px + 190px + env(safe-area-inset-bottom, 0px));
   }
+}
+
+/* Logotipo en móvil */
+@media (max-width: 768px) {
+  .brand-logo-link { order: 1; }
+
+  .site-logo { max-height: 35px; }
 }
