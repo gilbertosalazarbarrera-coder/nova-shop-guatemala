@@ -10,13 +10,17 @@
 </head>
 <body>
   <script>
-    // Debe ejecutarse ANTES de cargar Decap CMS (apunta a Netlify, no a la ruta relativa de GitHub Pages)
-    netlifyIdentity.init({ APIUrl: "https://sensational-pony-a2154a.netlify.app/.netlify/identity" });
-    window.CMS_MANUAL_INIT = true;
+    // Inicializar el widget de identidad apuntando correctamente a Netlify
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.reload();
+          });
+        }
+      });
+    }
   </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <script>
-    CMS.init();
-  </script>
 </body>
 </html>
