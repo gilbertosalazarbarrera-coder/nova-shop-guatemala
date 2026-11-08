@@ -9,7 +9,6 @@
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Inicializar el widget de Netlify Identity apuntando a Netlify
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -20,7 +19,7 @@
       });
     }
 
-    // Pasar la URL explícita a Decap CMS antes de renderizar
+    // Forzar la conexión con Netlify Identity
     CMS.init({
       config: {
         backend: {
