@@ -1,34 +1,22 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
+  <meta name="robots" content="noindex" />
+  <title>Administrar Nova Shop Guatemala</title>
+  <link href="config.yml" type="text/yaml" rel="cms-config-url" />
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <script>
+    // Debe ejecutarse ANTES de cargar Decap CMS (apunta a Netlify, no a la ruta relativa de GitHub Pages)
+    netlifyIdentity.init({ APIUrl: "https://sensational-pony-a2154a.netlify.app/.netlify/identity" });
+    window.CMS_MANUAL_INIT = true;
+  </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.reload();
-          });
-        }
-      });
-    }
-
-    // Inicializar Decap CMS conectando explícitamente a Netlify
-    CMS.init({
-      config: {
-        backend: {
-          name: 'git-gateway',
-          site_domain: 'sensational-pony-a2154a.netlify.app',
-          branch: 'main'
-        }
-      }
-    });
+    CMS.init();
   </script>
 </body>
 </html>
