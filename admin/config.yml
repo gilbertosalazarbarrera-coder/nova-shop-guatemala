@@ -4,11 +4,10 @@
 # Documentación: https://decapcms.org/docs/
 # Requisito de despliegue: Git Gateway activo en Netlify / similar.
 # ============================================================
-
 backend:
   name: git-gateway
-  branch: main          # Cambia a "master" si tu rama principal se llama así
-
+  site_domain: sensational-pony-a2154a.netlify.app
+  branch: main
 # Carpeta donde se guardan las imágenes subidas desde el CMS
 media_folder: "images"
 public_folder: "images"
