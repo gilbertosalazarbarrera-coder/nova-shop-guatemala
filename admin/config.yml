@@ -1,55 +1,19 @@
-# ============================================================
-# Decap CMS — Configuración para Nova Shop Guatemala
-# ============================================================
-# Documentación: https://decapcms.org/docs/
-# Requisito de despliegue: Git Gateway activo en Netlify / similar.
-# ============================================================
 backend:
   name: git-gateway
   site_domain: sensational-pony-a2154a.netlify.app
   branch: main
-# Carpeta donde se guardan las imágenes subidas desde el CMS
+
 media_folder: "images"
 public_folder: "images"
 
-# ──────────────────────────────────────────────
-# Colección: Productos del catálogo
-# Cada producto se guarda como un archivo .md en data/products/
-# ──────────────────────────────────────────────
 collections:
   - name: "products"
     label: "Productos"
-    label_singular: "Producto"
     folder: "data/products"
     create: true
-    delete: true
     slug: "{{slug}}"
-    summary: "{{name}} — Q{{price}}"
     fields:
-      - { label: "Nombre del Producto",   name: "name",          widget: "string",   hint: "Ej: Audífonos Inalámbricos Studio Pro" }
-      - { label: "Marca",                 name: "brand",         widget: "string",   required: false, hint: "Ej: Aura Acoustics" }
-      - { label: "Precio (Q)",            name: "price",         widget: "number",   value_type: "float", min: 0, step: 0.01, hint: "Precio en Quetzales (GTQ)" }
-      - { label: "Precio Original (Q)",   name: "originalPrice", widget: "number",   value_type: "float", min: 0, step: 0.01, required: false, hint: "Precio antes del descuento (opcional)" }
-      - { label: "Descripción",           name: "description",   widget: "text",     hint: "Descripción breve del producto (máx. 300 caracteres recomendado)" }
-      - { label: "Imagen Principal",      name: "image",         widget: "image",    hint: "Imagen cuadrada 1:1, min. 800×800 px" }
-      - label: "Categoría"
-        name: "category"
-        widget: "select"
-        options:
-          - { label: "Audio & Sonido",     value: "audio" }
-          - { label: "Relojes & Smart",    value: "relojes" }
-          - { label: "Tecnología",         value: "tecnologia" }
-          - { label: "Calzado Urbano",     value: "calzado" }
-          - { label: "Accesorios",         value: "accesorios" }
-          - { label: "Hogar & Setup",      value: "hogar" }
-      - { label: "Calificación (1–5)",    name: "rating",        widget: "number",   value_type: "float", min: 1, max: 5, step: 0.1, default: 4.5 }
-      - { label: "Número de Reseñas",     name: "reviewsCount",  widget: "number",   min: 0, default: 0 }
-      - { label: "Insignia / Badge",      name: "badge",         widget: "string",   required: false, hint: "Ej: Más Vendido, Nuevo, Exclusivo" }
-      - { label: "¿Es nuevo?",            name: "isNew",         widget: "boolean",  default: false }
-      - { label: "Stock Disponible",      name: "stock",         widget: "number",   min: 0, default: 10 }
-      - label: "Características del Producto"
-        name: "features"
-        widget: "list"
-        required: false
-        hint: "Agrega una característica por línea"
-        field: { label: "Característica", name: "feature", widget: "string" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Precio", name: "price", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Imagen", name: "image", widget: "image" }
