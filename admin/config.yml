@@ -1,32 +1,19 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: gilbertosalazarbarrera-coder/nova-shop-guatemala
   branch: main
-  identity_url: https://sensational-pony-a2154a.netlify.app/.netlify/identity
-  gateway_url: https://sensational-pony-a2154a.netlify.app/.netlify/git
 
-locale: es
-publish_mode: simple
-media_folder: "imagenes/productos"
-public_folder: "imagenes/productos"
+media_folder: "images"
+public_folder: "images"
 
 collections:
-  - name: productos
-    label: Productos
-    label_singular: Producto
-    folder: "data/productos"
+  - name: "products"
+    label: "Productos"
+    folder: "data/products"
     create: true
-    extension: json
-    format: json
     slug: "{{slug}}"
-    summary: "{{name}} — Q{{price}}"
     fields:
-      - { label: "Nombre", name: name, widget: string }
-      - { label: "Marca", name: brand, widget: string, required: false }
-      - { label: "Categoría", name: category, widget: string }
-      - { label: "Precio (Q)", name: price, widget: number, value_type: float, min: 0 }
-      - { label: "Precio anterior (Q)", name: originalPrice, widget: number, value_type: float, min: 0, required: false }
-      - { label: "Descripción", name: description, widget: text }
-      - { label: "Imagen", name: image, widget: image }
-      - { label: "Insignia (ej. Oferta, Nuevo)", name: badge, widget: string, required: false }
-      - { label: "Destacado", name: featured, widget: boolean, default: false }
-      - { label: "Disponible", name: inStock, widget: boolean, default: true }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Precio", name: "price", widget: "string" }
+      - { label: "Descripción", name: "description", widget: "text" }
+      - { label: "Imagen", name: "image", widget: "image" }
