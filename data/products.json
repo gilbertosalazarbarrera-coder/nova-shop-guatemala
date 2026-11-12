@@ -2,19 +2,18 @@
   "products": [
     {
       "id": "prod-1",
-      "name": "Audífonos Inalámbricos Studio Pro",
-      "brand": "Aura Acoustics",
-      "category": "audio",
-      "price": 890,
-      "originalPrice": 1150,
-      "rating": 4.9,
-      "reviewsCount": 342,
-      "badge": "Más Vendido",
-      "isNew": false,
-      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80",
+      "name": "Reloj Inteligente",
+      "brand": "Xiaomi",
+      "category": "relojes",
+      "price": 250,
+      "originalPrice": null,
+      "badge": "",
+      "isNew": true,
+      "stock": 20,
+      "image": "https://http2.mlstatic.com/D_NQ_NP_2X_620042-CBT46539402597_062021-F.jpg",
       "description": "Cancelación activa de ruido híbrida de última generación, transductores de berilio de 40 mm y autonomía de hasta 40 horas continuas. Diseñados con almohadillas viscoelásticas ultra suaves para máxima comodidad.",
       "features": [
-        "Cancelación de Ruido Activa Adaptativa (ANC)",
+        "Aprueba de Agua",
         "Hasta 40 horas de batería con carga rápida USB-C",
         "Bluetooth 5.3 con códec LDAC de alta resolución",
         "Micrófonos cuádruples con formación de haz para llamadas nítidas"
@@ -24,7 +23,9 @@
         "#e2ded9",
         "#1e3a5f"
       ],
-      "stock": 18,
+      "sizes": [],
+      "rating": 4.9,
+      "reviewsCount": 342,
       "visible": true
     },
     {
@@ -34,10 +35,9 @@
       "category": "relojes",
       "price": 1450,
       "originalPrice": 1850,
-      "rating": 4.8,
-      "reviewsCount": 189,
       "badge": "Exclusivo",
       "isNew": true,
+      "stock": 9,
       "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=80",
       "description": "Caja ultraligera de titanio aeroespacial cepillado de 40 mm, cristal de zafiro irrayable y movimiento de cuarzo suizo de precisión milimétrica. Correa de cuero genuino intercambiable.",
       "features": [
@@ -51,7 +51,9 @@
         "#d4af37",
         "#f3f4f6"
       ],
-      "stock": 9,
+      "sizes": [],
+      "rating": 4.8,
+      "reviewsCount": 189,
       "visible": true
     },
     {
@@ -61,10 +63,9 @@
       "category": "calzado",
       "price": 650,
       "originalPrice": 820,
-      "rating": 4.7,
-      "reviewsCount": 512,
       "badge": "20% OFF",
       "isNew": false,
+      "stock": 24,
       "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80",
       "description": "Zapatillas de alto rendimiento urbano con mediasuela de amortiguación responsiva por retorno de energía. Tejido exterior transpirable de punto elástico elaborado con fibras recicladas.",
       "features": [
@@ -87,7 +88,8 @@
         "43",
         "44"
       ],
-      "stock": 24,
+      "rating": 4.7,
+      "reviewsCount": 512,
       "visible": true
     },
     {
@@ -97,10 +99,9 @@
       "category": "tecnologia",
       "price": 5890,
       "originalPrice": 6990,
-      "rating": 4.95,
-      "reviewsCount": 94,
       "badge": "Premium",
       "isNew": true,
+      "stock": 6,
       "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop&q=80",
       "description": "Sensor CMOS de cuadro completo de 24.2 MP, grabación de video en 4K 60fps a 10 bits sin recorte, y estabilización óptica de imagen en el cuerpo de 5 ejes para creadores exigentes.",
       "features": [
@@ -113,7 +114,9 @@
         "#18181b",
         "#71717a"
       ],
-      "stock": 6,
+      "sizes": [],
+      "rating": 4.95,
+      "reviewsCount": 94,
       "visible": true
     },
     {
@@ -123,10 +126,9 @@
       "category": "tecnologia",
       "price": 790,
       "originalPrice": 990,
-      "rating": 4.9,
-      "reviewsCount": 230,
       "badge": "Hot Deal",
       "isNew": false,
+      "stock": 14,
       "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&auto=format&fit=crop&q=80",
       "description": "Diseño compacto al 75% con chasis de aluminio CNC anodizado, switches lubricados de fábrica Gateron Pro Yellow y conectividad trimodal (Bluetooth 5.1, 2.4GHz y USB-C).",
       "features": [
@@ -140,7 +142,9 @@
         "#f9fafb",
         "#0284c7"
       ],
-      "stock": 14,
+      "sizes": [],
+      "rating": 4.9,
+      "reviewsCount": 230,
       "visible": true
     },
     {
@@ -150,10 +154,9 @@
       "category": "accesorios",
       "price": 490,
       "originalPrice": 620,
-      "rating": 4.75,
-      "reviewsCount": 167,
       "badge": "Tendencia",
       "isNew": false,
+      "stock": 22,
       "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80",
       "description": "Montura clásica aviador esculpida en acetato italiano pulido a mano. Cristales minerales con protección UV400 y polarizado de alta definición que neutraliza los reflejos solares.",
       "features": [
@@ -167,7 +170,9 @@
         "#451a03",
         "#78350f"
       ],
-      "stock": 22,
+      "sizes": [],
+      "rating": 4.75,
+      "reviewsCount": 167,
       "visible": true
     },
     {
@@ -177,10 +182,9 @@
       "category": "accesorios",
       "price": 450,
       "originalPrice": 580,
-      "rating": 4.85,
-      "reviewsCount": 421,
       "badge": "Eco-Friendly",
       "isNew": true,
+      "stock": 31,
       "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80",
       "description": "Capacidad expandible de 18L a 25L fabricada en tejido Cordura repelente al agua. Compartimento acolchado independiente para laptop de hasta 16 pulgadas.",
       "features": [
@@ -194,7 +198,9 @@
         "#365314",
         "#334155"
       ],
-      "stock": 31,
+      "sizes": [],
+      "rating": 4.85,
+      "reviewsCount": 421,
       "visible": true
     },
     {
@@ -204,10 +210,9 @@
       "category": "hogar",
       "price": 590,
       "originalPrice": 750,
-      "rating": 4.92,
-      "reviewsCount": 115,
       "badge": "Diseño",
       "isNew": false,
+      "stock": 12,
       "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&auto=format&fit=crop&q=80",
       "description": "Luminaria de escritorio minimalista con estructura de aluminio satinado y difusor perimetral de luz cálida (2700K - 4000K). Sensor táctil capacitivo de atenuación fluida sin parpadeos.",
       "features": [
@@ -221,7 +226,9 @@
         "#1f2937",
         "#b45309"
       ],
-      "stock": 12,
+      "sizes": [],
+      "rating": 4.92,
+      "reviewsCount": 115,
       "visible": true
     },
     {
@@ -231,10 +238,9 @@
       "category": "audio",
       "price": 780,
       "originalPrice": 950,
-      "rating": 4.88,
-      "reviewsCount": 288,
       "badge": "Impermeable IP67",
       "isNew": true,
+      "stock": 19,
       "image": "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&auto=format&fit=crop&q=80",
       "description": "Sonido envolvente 360 grados con radiadores pasivos duales que entregan bajos profundos sin distorsión. Certificación IP67 a prueba de agua, arena y caídas accidentales.",
       "features": [
@@ -248,7 +254,9 @@
         "#0f766e",
         "#ea580c"
       ],
-      "stock": 19,
+      "sizes": [],
+      "rating": 4.88,
+      "reviewsCount": 288,
       "visible": true
     },
     {
@@ -258,10 +266,9 @@
       "category": "hogar",
       "price": 175,
       "originalPrice": 220,
-      "rating": 4.8,
-      "reviewsCount": 630,
       "badge": "Eco Top",
       "isNew": false,
+      "stock": 45,
       "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&auto=format&fit=crop&q=80",
       "description": "Acero inoxidable de grado alimenticio 18/8 con aislamiento al vacío de doble pared TempShield. Mantiene las bebidas heladas por 24 horas o calientes durante 12 horas.",
       "features": [
@@ -276,7 +283,9 @@
         "#14b8a6",
         "#fb7185"
       ],
-      "stock": 45,
+      "sizes": [],
+      "rating": 4.8,
+      "reviewsCount": 630,
       "visible": true
     },
     {
@@ -286,10 +295,9 @@
       "category": "relojes",
       "price": 1190,
       "originalPrice": 1450,
-      "rating": 4.87,
-      "reviewsCount": 310,
       "badge": "GPS + ECG",
       "isNew": true,
+      "stock": 15,
       "image": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=800&auto=format&fit=crop&q=80",
       "description": "Pantalla AMOLED siempre activa de 1.43 pulgadas con brillo pico de 1000 nits. Monitoreo cardíaco 24/7, sensor de saturación SpO2, GPS multibanda y más de 120 modos deportivos.",
       "features": [
@@ -303,7 +311,9 @@
         "#e2e8f0",
         "#15803d"
       ],
-      "stock": 15,
+      "sizes": [],
+      "rating": 4.87,
+      "reviewsCount": 310,
       "visible": true
     },
     {
@@ -313,10 +323,9 @@
       "category": "hogar",
       "price": 1850,
       "originalPrice": 2250,
-      "rating": 4.93,
-      "reviewsCount": 147,
       "badge": "Ergonómica",
       "isNew": false,
+      "stock": 8,
       "image": "https://images.unsplash.com/photo-1580481077195-c3f8ed458899?w=800&auto=format&fit=crop&q=80",
       "description": "Silla ergonómica de oficina con respaldo en malla transpirable, soporte lumbar autoadaptativo dinámico 3D, y reposabrazos ajustables en 4 dimensiones para prevenir fatiga.",
       "features": [
@@ -329,7 +338,9 @@
         "#1e293b",
         "#94a3b8"
       ],
-      "stock": 8,
+      "sizes": [],
+      "rating": 4.93,
+      "reviewsCount": 147,
       "visible": true
     }
   ]
