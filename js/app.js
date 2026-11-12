@@ -25,7 +25,7 @@ const AppState = {
   sortBy: 'featured',
   discountPercent: 0,
   activeCoupon: null,
-  freeShippingThreshold: 500.00, // Envío gratis a partir de Q500.00
+  freeShippingThreshold: 300.00, // Envío gratis a partir de Q300.00
   selectedPaymentMethod: 'transfer'
 };
 
@@ -61,9 +61,86 @@ function saveWishlistToStorage() {
   }
 }
 
+
+/* ==========================================================================
+   CATÁLOGO ADMINISTRABLE DESDE EL PANEL (data/products.json)
+   Si el archivo no carga, se usa el catálogo incluido en js/products.js.
+   ========================================================================== */
+
+const CATEGORY_NAMES = {
+  audio: 'Audio & Sonido',
+  relojes: 'Relojes & Smart',
+  tecnologia: 'Tecnología',
+  calzado: 'Calzado Urbano',
+  accesorios: 'Accesorios de Moda',
+  hogar: 'Hogar & Decoración'
+};
+
+const PLACEHOLDER_IMAGE = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect width="400" height="400" fill="#f2f4f5"/>' +
+  '<text x="200" y="210" font-family="Arial" font-size="22" fill="#787574" text-anchor="middle">Sin imagen</text></svg>');
+
+function normalizeProduct(p, index) {
+  const num = (v, d) => { const n = Number(v); return Number.isFinite(n) ? n : d; };
+  const clean = (v) => String(v == null ? '' : v).replace(/[<>"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const list = (v) => (Array.isArray(v) ? v.filter((x) => x != null && String(x).trim() !== '').map(clean) : []);
+  const name = clean(p.name || 'Producto');
+  const slug = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const price = Math.max(0, num(p.price, 0));
+  const original = num(p.originalPrice, 0);
+  const category = String(p.category || 'accesorios');
+  return {
+    id: String(p.id || ('prod-' + (slug || index))).replace(/[^A-Za-z0-9_-]/g, '-'),
+    name: name,
+    brand: clean(p.brand),
+    category: category,
+    categoryName: CATEGORY_NAMES[category] || clean(p.categoryName) || category,
+    price: price,
+    originalPrice: original > price ? original : null,
+    rating: Math.min(5, Math.max(0, num(p.rating, 0))),
+    reviewsCount: Math.max(0, Math.round(num(p.reviewsCount, 0))),
+    badge: clean(p.badge),
+    isNew: p.isNew === true,
+    image: p.image ? String(p.image) : PLACEHOLDER_IMAGE,
+    description: clean(p.description),
+    features: list(p.features),
+    colors: list(p.colors),
+    sizes: list(p.sizes),
+    stock: Math.max(0, Math.round(num(p.stock, 10)))
+  };
+}
+
+async function loadCatalogFromCMS() {
+  try {
+    const res = await fetch('data/products.json?v=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const raw = Array.isArray(data) ? data : data.products;
+    if (!Array.isArray(raw)) throw new Error('Formato inesperado');
+    const products = raw.filter((p) => p && p.visible !== false).map(normalizeProduct);
+    AppState.products = products;
+    AppState.filteredProducts = [...products];
+    AppState.catalogFromCMS = true;
+  } catch (e) {
+    console.warn('[Catálogo] Se usa el catálogo de js/products.js:', e.message);
+  }
+}
+
+// Pone al día el carrito guardado: precios/nombres actuales y quita productos que ya no existen
+function syncCartWithCatalog() {
+  if (!AppState.catalogFromCMS) return;
+  AppState.cart = AppState.cart.filter((item) => AppState.products.some((p) => p.id === item.productId)).map((item) => {
+    const p = AppState.products.find((x) => x.id === item.productId);
+    return Object.assign({}, item, { name: p.name, price: p.price, image: p.image, brand: p.brand });
+  });
+  saveCartToStorage();
+}
+
 // Inicialización de componentes cuando el DOM está listo
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadCatalogFromCMS();
   loadPersistedData();
+  syncCartWithCatalog();
   renderCategoriesBar();
   applyFiltersAndSort();
   updateCartBadge();
@@ -235,13 +312,13 @@ function renderCatalogGrid() {
           <h3 class="product-title" title="${product.name}">${product.name}</h3>
 
           <!-- Calificación de estrellas -->
-          <div class="product-rating-row">
+          ${product.reviewsCount > 0 ? `<div class="product-rating-row">
             <div class="star-rating-stars">
               ${renderStarRating(product.rating)}
             </div>
             <span class="rating-score">${product.rating.toFixed(1)}</span>
             <span class="rating-count">(${product.reviewsCount})</span>
-          </div>
+          </div>` : ''}
 
           <!-- Precios Estrictamente en Quetzales (Q) -->
           <div class="product-pricing-row">
@@ -523,13 +600,13 @@ function openQuickView(productId) {
         <span class="product-brand">${product.brand}</span>
         <h2 style="font-size: 1.5rem; margin-bottom: 8px;">${product.name}</h2>
         
-        <div class="product-rating-row" style="margin-bottom: 14px;">
+        ${product.reviewsCount > 0 ? `<div class="product-rating-row" style="margin-bottom: 14px;">
           <div class="star-rating-stars">
             ${renderStarRating(product.rating)}
           </div>
           <span class="rating-score">${product.rating.toFixed(1)}</span>
           <span class="rating-count">(${product.reviewsCount} reseñas verificadas)</span>
-        </div>
+        </div>` : ''}
 
         <div class="product-pricing-row" style="margin-bottom: 16px;">
           <span class="product-price-current">${formatMoney(product.price)}</span>
@@ -850,7 +927,7 @@ const LEGAL_DOCS = {
         <li><strong>Ciudad de Guatemala (Zonas 1 a 21):</strong> 24 a 48 horas hábiles mediante mensajería directa con pago previo verificado por transferencia o depósito a cuenta de ahorro Banrural.</li>
         <li><strong>Municipios del Departamento de Guatemala:</strong> Mixco, Villa Nueva, Santa Catarina Pinula, San Miguel Petapa, Fraijanes, San José Pinula (24 a 48 horas).</li>
         <li><strong>Departamentos del Interior:</strong> Quetzaltenango, Escuintla, Sacatepéquez (Antigua Guatemala), Chimaltenango, Alta Verapaz, Petén, Izabal, Huehuetenango, etc., en 48 a 72 horas hábiles a través de Cargo Expreso, Guatex o Forza Delivery Express.</li>
-        <li><strong>Envío Gratuito:</strong> Aplica automáticamente en todas las compras a partir de <strong>Q500.00</strong> a cualquier punto del país.</li>
+        <li><strong>Envío Gratuito:</strong> Aplica automáticamente en todas las compras a partir de <strong>Q300.00</strong> a cualquier punto del país.</li>
       </ul>
 
       <h3>2. Derecho de Retracto y Garantía de Satisfacción</h3>
