@@ -9,23 +9,43 @@ media_folder: "imagenes/productos"
 public_folder: "imagenes/productos"
 
 collections:
-  - name: productos
-    label: Productos
-    label_singular: Producto
-    folder: "data/productos"
-    create: true
-    extension: json
+  - name: tienda
+    label: Tienda
     format: json
-    slug: "{{slug}}"
-    summary: "{{name}} — Q{{price}}"
-    fields:
-      - { label: "Nombre", name: name, widget: string }
-      - { label: "Marca", name: brand, widget: string, required: false }
-      - { label: "Categoría", name: category, widget: string }
-      - { label: "Precio (Q)", name: price, widget: number, value_type: float, min: 0 }
-      - { label: "Precio anterior (Q)", name: originalPrice, widget: number, value_type: float, min: 0, required: false }
-      - { label: "Descripción", name: description, widget: text }
-      - { label: "Imagen", name: image, widget: image }
-      - { label: "Insignia (ej. Oferta, Nuevo)", name: badge, widget: string, required: false }
-      - { label: "Destacado", name: featured, widget: boolean, default: false }
-      - { label: "Disponible", name: inStock, widget: boolean, default: true }
+    files:
+      - name: productos
+        label: Productos
+        file: data/products.json
+        fields:
+          - label: Productos
+            name: products
+            widget: list
+            label_singular: Producto
+            summary: "{{fields.name}} — Q{{fields.price}}"
+            fields:
+              - { label: "ID (se genera solo, no lo cambies)", name: id, widget: uuid, prefix: "prod-" }
+              - { label: "Nombre", name: name, widget: string }
+              - { label: "Marca", name: brand, widget: string, required: false }
+              - label: "Categoría"
+                name: category
+                widget: select
+                options:
+                  - { label: "Audio & Sonido", value: audio }
+                  - { label: "Relojes & Smart", value: relojes }
+                  - { label: "Tecnología", value: tecnologia }
+                  - { label: "Calzado", value: calzado }
+                  - { label: "Accesorios", value: accesorios }
+                  - { label: "Hogar & Setup", value: hogar }
+              - { label: "Precio (Q)", name: price, widget: number, value_type: float, min: 0 }
+              - { label: "Precio anterior (Q) — para mostrar descuento", name: originalPrice, widget: number, value_type: float, min: 0, required: false }
+              - { label: "Insignia (ej. Oferta, Nuevo, 20% OFF)", name: badge, widget: string, required: false }
+              - { label: "Marcar como nuevo", name: isNew, widget: boolean, default: false, required: false }
+              - { label: "Existencias", name: stock, widget: number, value_type: int, min: 0, default: 10 }
+              - { label: "Imagen", name: image, widget: image }
+              - { label: "Descripción", name: description, widget: text }
+              - { label: "Características", name: features, widget: list, required: false, field: { label: "Característica", name: feature, widget: string } }
+              - { label: "Colores", name: colors, widget: list, required: false, field: { label: "Color", name: color, widget: color } }
+              - { label: "Tallas (solo calzado/ropa)", name: sizes, widget: list, required: false, field: { label: "Talla", name: size, widget: string } }
+              - { label: "Calificación (0 a 5, déjalo vacío si no hay reseñas)", name: rating, widget: number, value_type: float, min: 0, max: 5, required: false }
+              - { label: "Número de reseñas", name: reviewsCount, widget: number, value_type: int, min: 0, required: false }
+              - { label: "Mostrar en la tienda", name: visible, widget: boolean, default: true, required: false }
