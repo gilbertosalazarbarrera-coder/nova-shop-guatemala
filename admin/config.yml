@@ -2,7 +2,6 @@ backend:
   name: github
   repo: gilbertosalazarbarrera-coder/nova-shop-guatemala
   branch: main
-  site_domain: sensational-pony-a2154a.netlify.app
 
 locale: es
 publish_mode: simple
