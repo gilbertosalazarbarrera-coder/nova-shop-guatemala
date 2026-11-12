@@ -342,6 +342,32 @@
       "rating": 4.93,
       "reviewsCount": 147,
       "visible": true
+    },
+    {
+      "id": "prod-4c02cead-b96d-44d3-9181-b403cc728a1a",
+      "name": "Zapato de Cuero",
+      "brand": "Nike",
+      "category": "calzado",
+      "price": 300,
+      "originalPrice": 400,
+      "badge": "Oferta",
+      "isNew": false,
+      "stock": 10,
+      "image": "/imagenes/productos/pasted-image-1794524179867.png",
+      "description": "comodos con plantilla de algodon que se amoldan a tus pies",
+      "features": [
+        "Cuero de Calidad"
+      ],
+      "colors": [
+        "#201818",
+        "#9f9393"
+      ],
+      "sizes": [
+        "40"
+      ],
+      "rating": null,
+      "reviewsCount": null,
+      "visible": true
     }
   ]
 }
