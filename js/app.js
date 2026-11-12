@@ -14,10 +14,22 @@ function formatMoney(amount) {
   return `Q${formatted}`;
 }
 
+// Catálogo y categorías de respaldo (js/products.js). La tienda sigue funcionando aunque ese archivo falle.
+const FALLBACK_PRODUCTS = (typeof PRODUCTS_DATA !== 'undefined' && Array.isArray(PRODUCTS_DATA)) ? PRODUCTS_DATA : [];
+const CATEGORIES_LIST = (typeof CATEGORIES_DATA !== 'undefined' && Array.isArray(CATEGORIES_DATA)) ? CATEGORIES_DATA : [
+  { id: 'all', name: 'Todos los Productos', icon: 'grid' },
+  { id: 'audio', name: 'Audio & Sonido', icon: 'headphones' },
+  { id: 'relojes', name: 'Relojes & Smart', icon: 'watch' },
+  { id: 'tecnologia', name: 'Tecnología', icon: 'laptop' },
+  { id: 'calzado', name: 'Calzado', icon: 'footprints' },
+  { id: 'accesorios', name: 'Accesorios', icon: 'sparkles' },
+  { id: 'hogar', name: 'Hogar & Setup', icon: 'home' }
+];
+
 // Estado global de la aplicación
 const AppState = {
-  products: [...PRODUCTS_DATA],
-  filteredProducts: [...PRODUCTS_DATA],
+  products: [...FALLBACK_PRODUCTS],
+  filteredProducts: [...FALLBACK_PRODUCTS],
   cart: [],
   wishlist: new Set(),
   currentCategory: 'all',
@@ -158,7 +170,7 @@ function renderCategoriesBar() {
   const container = document.getElementById('categoriesBar');
   if (!container) return;
 
-  container.innerHTML = CATEGORIES_DATA.map(cat => `
+  container.innerHTML = CATEGORIES_LIST.map(cat => `
     <button class="category-pill ${AppState.currentCategory === cat.id ? 'active' : ''}" 
             data-category="${cat.id}">
       ${getCategoryIcon(cat.icon)}
