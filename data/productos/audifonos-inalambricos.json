@@ -1,0 +1,12 @@
+{
+  "name": "Audifonos Inalambricos",
+  "brand": "Xiaomi",
+  "category": "Tecnologia",
+  "price": 200,
+  "originalPrice": 300,
+  "description": "Bluthoot, inalambricos, calidad",
+  "image": "/imagenes/productos/pasted-image-1794444595331.png",
+  "badge": "Nuevo",
+  "featured": false,
+  "inStock": true
+}
