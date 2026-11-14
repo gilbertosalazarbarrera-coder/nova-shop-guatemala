@@ -317,33 +317,6 @@
       "visible": true
     },
     {
-      "id": "prod-12",
-      "name": "Silla de Trabajo Ergonómica ErgoPulse",
-      "brand": "Studio Ergonomics",
-      "category": "hogar",
-      "price": 1850,
-      "originalPrice": 2250,
-      "badge": "Ergonómica",
-      "isNew": false,
-      "stock": 8,
-      "image": "https://images.unsplash.com/photo-1580481077195-c3f8ed458899?w=800&auto=format&fit=crop&q=80",
-      "description": "Silla ergonómica de oficina con respaldo en malla transpirable, soporte lumbar autoadaptativo dinámico 3D, y reposabrazos ajustables en 4 dimensiones para prevenir fatiga.",
-      "features": [
-        "Mecanismo sincrónico basculante con bloqueo en 4 posiciones",
-        "Pistón de gas Clase 4 certificado por BIFMA y base de aluminio pulido",
-        "Ruedas dobles de poliuretano silenciosas aptas para pisos delicados",
-        "Garantía estructural de 5 años respaldada en Guatemala"
-      ],
-      "colors": [
-        "#1e293b",
-        "#94a3b8"
-      ],
-      "sizes": [],
-      "rating": 4.93,
-      "reviewsCount": 147,
-      "visible": true
-    },
-    {
       "id": "prod-4c02cead-b96d-44d3-9181-b403cc728a1a",
       "name": "Zapato de Cuero",
       "brand": "Nike",
